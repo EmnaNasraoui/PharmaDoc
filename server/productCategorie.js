@@ -21,3 +21,10 @@ module.exports = {
   errorMessage: errorMessage,
   categories: categories
 }
+
+
+module.exports = {
+    categorieEnum: categorieEnum,
+  errorMessage: errorMessage,
+  categories: categories
+}
