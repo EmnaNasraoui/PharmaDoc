@@ -1,5 +1,7 @@
 let Enum = require('enum')
 
+//categorie des produits
+
 let categorieEnum = new Enum({
   'drug': 1,
   'bio product': 2,
