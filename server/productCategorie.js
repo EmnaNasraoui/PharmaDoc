@@ -23,8 +23,4 @@ module.exports = {
 }
 
 
-module.exports = {
-    categorieEnum: categorieEnum,
-  errorMessage: errorMessage,
-  categories: categories
-}
+
