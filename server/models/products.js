@@ -14,25 +14,23 @@ var ProductSchema = new mongoose.Schema({
     },
 
     Date_Of_Entry: {
-        type: Date,
-        default: Date.now,
-        validate: [(v) => v instanceof Date, 'course date shall be a date.']
+        type: String,
+
     },
 
     Date_Of_Expiration: {
-        type: Date,
-        default: Date.now,
-        validate: [(v) => v instanceof Date, 'course date shall be a date.']
+        type: String,
+
     },
 
-    
-    Product_image: String,
+    Product_Category: {
+        type: String,
+        enum: ['Drug', 'Bio Product', 'Aesthetic Product', 'Accessory']
 
-    user_followed_courses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course', required: [true, 'user\'s course is mandatory'] }],
+    },
 
-    user_courses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }],
+    Product_Pharmacy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pharmacy' }],
 
-    user_comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
-
-    user_project: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Project' }]
 });
+
+module.exports = mongoose.model('Product', ProductSchema);
