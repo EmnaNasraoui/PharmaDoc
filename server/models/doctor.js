@@ -3,10 +3,9 @@ let Schema = mongoose.Schema;
 
 var DoctorSchema = new Schema({
 
-    specialty : {type:string,
+    specialty : {type:String,
                 required:true},
-    partnership: { type:Schema.Types.ObjectId,
-                    required:true,
-                     ref:'Pharmacy'}
+    partnership: [{ type:Schema.Types.ObjectId,
+                     ref:'Pharmacy'}]
 })
 module.exports=mongoose.model('Doctor',DoctorSchema);
