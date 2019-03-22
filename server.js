@@ -2,6 +2,7 @@ let express = require('express')
 let cors = require('cors')
 let app = express()
 const auth = require('./server/routes/auth')
+const pharmacy = require('./server/routes/Pharmacy')
 const chatBox = require('./server/routes/chatBox')
 app.use(express.json())
 app.use(cors())
@@ -22,6 +23,7 @@ mongoose.connect(mongoDB, { useNewUrlParser: true }).then(
 let db = mongoose.connection
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 app.use('/auth', auth)
+app.use('/pharmacy', pharmacy)
 app.use('/chatBox', chatBox)
 server.listen(process.env.PORT, function () {
     console.log('Express server listening on port ' + process.env.PORT)
