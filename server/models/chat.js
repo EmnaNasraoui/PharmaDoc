@@ -1,6 +1,6 @@
 let mongoose = require('mongoose');
-
-var ChatSchema = new mongoose.Schema({
+let Schema = mongoose.Schema
+var Chats= new Schema({
     userOne : {type: mongoose.SchemaTypes.ObjectId, ref:'User'},
     userTwo: {type: mongoose.SchemaTypes.ObjectId, ref:'User'},
     messages : [{
@@ -12,4 +12,4 @@ var ChatSchema = new mongoose.Schema({
 
 })
 
-module.exports = mongoose.model('Chat', ChatSchema);
+module.exports = mongoose.model('Chat', Chats);
