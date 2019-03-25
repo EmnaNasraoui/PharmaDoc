@@ -2,7 +2,7 @@ let mongoose = require('mongoose');
 
 var PatientSchema = new mongoose.Schema({
 
-    Appointment: [{ type: mongoose.Schema.Types.ObjectId, ref: 'RDV' }],
+    Appointment: [{ type: mongoose.Schema.Types.ObjectId, ref: 'RDV' }]
 
 });
 
