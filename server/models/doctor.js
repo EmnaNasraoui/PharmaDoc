@@ -6,6 +6,8 @@ var DoctorSchema = new Schema({
     specialty : {type:String,
                 required:true},
     partnership: [{ type:Schema.Types.ObjectId,
-                     ref:'Pharmacy'}]
+                     ref:'Pharmacy'}],
+    All_Appointment:[{type:Schema.Types.ObjectId,
+        ref:'RDV'}]
 })
 module.exports=mongoose.model('Doctor',DoctorSchema);
