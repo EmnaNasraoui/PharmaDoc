@@ -1,9 +1,9 @@
 const router = require('express').Router()
 var Pharmacy = require('../models/pharmacy');
 var Doctor = require('../models/doctor');
-let Mongoose = require('mongoose')
-let ObjectId = Mongoose.Types.ObjectId
-router.post('/addPharmacy', async (req, res) => {
+let Mongoose = require('mongoose');
+let ObjectId = Mongoose.Types.ObjectId ;
+router.post('/addPharmacy', async (req,res)=>{
     const result = await Pharmacy.create(req.body).catch(err => err)
     res.send(result)
 })
