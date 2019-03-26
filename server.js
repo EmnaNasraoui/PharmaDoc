@@ -11,7 +11,7 @@ app.use(cors())
 
 const server = require('http').Server(app);
 
-const io = require('socket.io')(server, {origins: '*:*'});
+const io = require('socket.io')(server, { origins: '*:*' });
 
 app.io = io;
 
@@ -30,5 +30,5 @@ app.use('/doctor', Doctor)
 app.use('/chatBox', chatBox)
 app.use('/patient',patient)
 server.listen(process.env.PORT, function () {
-    console.log('Express server listening on port ' + process.env.PORT)
-  })
+  console.log('Express server listening on port ' + process.env.PORT)
+})

@@ -10,4 +10,4 @@ var DoctorSchema = new Schema({
     All_Appointment:[{type:Schema.Types.ObjectId,
         ref:'RDV'}]
 })
-module.exports=mongoose.model('Doctor',DoctorSchema);
+module.exports = mongoose.model('Doctor', DoctorSchema);
