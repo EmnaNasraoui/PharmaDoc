@@ -47,9 +47,12 @@ router.post('/signup', upload.single('user_image'),async (req, res) =>{
       }
       level = (lvl == 1) ? "easy" : (lvl == 2) ? "Soft" : (lvl == 3) ? "Hard" : "";
       console.log(level)
-      const result = await User.create(req.body).catch(err => err)
+      // const result = await Doctor.create(req.body).catch(err => err)
+      //   let user = new User(req.body);
+      //   user.id_doctor = result._id;
+      const result2 = await User.create(user).catch(err => err)
 
-      res.send({ msg: result })
+      res.send({ msg: result2 })
     }
     else {
       level = "Your password must contain at least 8 characters and less then 20";
