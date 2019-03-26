@@ -2,7 +2,7 @@ const router = require('express').Router();
 var Patient = require('../models/patient');
 var Doctor = require('../models/doctor');
 var RDV = require('../models/RDV');
-var user = require('../models/user')
+var User = require('../models/user')
 let Mongoose = require('mongoose');
 let ObjectId = Mongoose.Types.ObjectId;
 
@@ -20,7 +20,7 @@ router.post('/getRDV/:id_doctor', async (req,res)=>{
 })
 
 router.get('/get_list_doctor', async (req,res)=>{
-        const result = await user.find({}).populate({path:'id_doctor',select:['first_name','last_name']}).catch(err => err)
+        const result = await User.find({}).populate({path:'id_doctor',select:['specialty']}).exec().catch(err => err)
     res.send(result)
 })
 

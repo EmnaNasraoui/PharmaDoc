@@ -11,7 +11,10 @@ var UserSchema = new mongoose.Schema({
         type: String
 
     },
-   
+    birthday: {
+      type: String
+
+  },
     email: {
         type: String,
         unique: true

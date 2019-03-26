@@ -10,13 +10,13 @@ var storage = multer.diskStorage({
       cb(null, 'server/uploads')
   },
   filename: (req, file, cb) => {
-      cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+      cb(null, file.originalname)
   }
 });
 var upload = multer({ storage: storage });
 
 
-router.post('/signup', upload.single('user_image'),async (req, res) =>{
+router.post('/signup', upload.single('image'),async (req, res) =>{
     req.body.user_image = req.file.filename;
     let lvl = 0;
     const number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]

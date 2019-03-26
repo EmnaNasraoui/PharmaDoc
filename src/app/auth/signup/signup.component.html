@@ -1,51 +1,55 @@
 <section class="register-block">
   <div class="container">
     <div class="row">
-      <div class="col-md-5 register-sec">
-        <h2 class="text-center">Register Now</h2>
-        <form class="register-form">
+      <div class="col-md-5">
+        <h2 class="text-center" style="margin-top: 45px;">Register Now</h2>
+        <form [formGroup]="UserForm">
           <div class="form-group">
-            <label for="exampleInputName1" class="text-uppercase">Name</label>
-            <input type="name" class="form-control" placeholder="">
+            <label>First Name</label>
+            <input type="text" class="form-control" formControlName="first_name" placeholder="">
           </div>
           <div class="form-group">
-            <label for="exampleInputAddress1" class="text-uppercase">Address Line 1</label>
-            <input type="address1" class="form-control" placeholder="">
+            <label>Last Name</label>
+            <input type="text" class="form-control" formControlName="last_name" placeholder="">
           </div>
           <div class="form-group">
-            <label for="exampleInputAddress2" class="text-uppercase">Address Line 2</label>
-            <input type="address2" class="form-control" placeholder="">
+            <label>Birthday</label>
+            <input type="date" class="form-control" formControlName="birthday" placeholder="">
           </div>
           <div class="form-group">
-            <label for="exampleInputTown1" class="text-uppercase">Town</label>
-            <input type="town" class="form-control" placeholder="">
+            <label>Address</label>
+            <input type="text" class="form-control"formControlName="adresse" placeholder="">
+          </div>
+          <mat-form-field>
+            <mat-label>Select</mat-label>
+            <mat-select  formControlName="user_role">
+              <mat-option *ngFor="let Role of Roles" [value]="Role.value">
+                {{Role.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" placeholder="" formControlName="email">
           </div>
           <div class="form-group">
-            <label for="exampleInputCountry1" class="text-uppercase">Country</label>
-            <input type="country" class="form-control" placeholder="">
+            <label>Password</label>
+            <input type="password" class="form-control" placeholder="" formControlName="password">
           </div>
-          <div class="form-group">
-            <label for="exampleInputPostCode1" class="text-uppercase">Post Cod/Zip</label>
-            <input type="postcode" class="form-control" placeholder="">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputUsername" class="text-uppercase">Username</label>
-            <input type="text" class="form-control" placeholder="">
-
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail" class="text-uppercase">Email</label>
-            <input type="email" class="form-control" placeholder="">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1" class="text-uppercase">Password</label>
-            <input type="password" class="form-control" placeholder="">
-          </div>
-
-
-
+          <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+              </div>
+              <div class="custom-file">
+                <input #file type="file"  accept='image/*' (change)="preview(file.files);selectedFile($event)" name="user_image" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+               
+                <img [src]="imgURL || 'http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png'" class="imageSize">
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+              </div>
+            </div>
+            <br>
           <div class="form-check">
-            <button type="submit" class="btn btn-register float-right">Submit</button>
+            <button (click)="AddUser()" class="btn btn-register float-right margin">Sign up</button>
           </div>
 
         </form>
@@ -56,3 +60,4 @@
     </div>
   </div>
 </section>
+<!-- multiple -->

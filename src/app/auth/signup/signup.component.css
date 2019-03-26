@@ -22,3 +22,12 @@ padding : 50px 0;
 .banner-text h2{color:#fff; font-weight:600;}
 .banner-text h2:after{content:" "; width:100px; height:5px; background:#FFF; display:block; margin-top:20px; border-radius:3px;}
 .banner-text p{color:#fff;}
+.imageSize{
+    height: 160px;
+    width: 174px;
+    margin-top: 213px;
+}
+.margin{
+    margin-bottom: 22px;
+    margin-top: 167px;
+}
