@@ -1,6 +1,9 @@
 const router = require('express').Router()
 var Doctor = require('../models/doctor');
 var RDV = require('../models/RDV');
+var RDV = require('../models/RDV');
+var Partnership = require('../models/partnership');
+
 let Mongoose = require('mongoose');
 let ObjectId = Mongoose.Types.ObjectId
 
@@ -66,7 +69,18 @@ router.post('/deleteaRDV/:id_RDV', async (req, res) => {
     res.send(result);
 })
 
+router.post('/partnerShipToValidate/:id_doctor/:id_pharmacy', async (req, res) => {
 
+    PartnershipObject = {
+        Pharmacy: req.params.id_pharmacy,
+        Doctor: req.params.id_doctor
+    }
+    const add1 = await Partnership.create(PartnershipObject).catch(err => err)
+
+    console.log(add1)
+    res.send({ msg: add1 });
+
+})
 
 
 

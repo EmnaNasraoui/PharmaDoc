@@ -10,4 +10,7 @@ var DoctorSchema = new Schema({
         ref:'RDV'}],
  id_user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 })
+
+
+
 module.exports = mongoose.model('Doctor', DoctorSchema);
