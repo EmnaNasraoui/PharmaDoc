@@ -1,5 +1,7 @@
 const router = require('express').Router()
-const path = require("path");
+var Doctor = require('../models/doctor');
+var Pharmacy = require('../models/pharmacy');
+var Patient = require('../models/patient');
 const multer = require("multer");
 var User = require('../models/user');
 var jwt = require('jsonwebtoken');
@@ -17,7 +19,7 @@ var upload = multer({ storage: storage });
 
 
 router.post('/signup', upload.single('image'),async (req, res) =>{
-    req.body.user_image = req.file.filename;
+  
     let lvl = 0;
     const number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     const majus = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -47,9 +49,40 @@ router.post('/signup', upload.single('image'),async (req, res) =>{
       }
       level = (lvl == 1) ? "easy" : (lvl == 2) ? "Soft" : (lvl == 3) ? "Hard" : "";
       console.log(level)
-      const result = await User.create(req.body).catch(err => err)
-
-      res.send({ msg: result })
+      if (req.body.user_role == 'doctor'){
+        const result = await Doctor.create(req.body).catch(err => err)
+        let user = new User(req.body);
+        user.id_doctor = result._id;
+        const result2 = await User.create(user).catch(err => err)
+        const result3 = await Doctor.findByIdAndUpdate(result._id, {$set : {id_user:result2._id }})
+        console.log(result3)
+      res.send({ msg: result2 })
+      }
+      else{
+        if (req.body.user_role == 'pharmacy'){
+          const result = await Pharmacy.create(req.body).catch(err => err)
+          let user = new User(req.body);
+          user.id_pharmacy = result._id;
+          user.user_image =req.file.filename;
+          const result2 = await User.create(user).catch(err => err)
+          const result3 = await Pharmacy.findByIdAndUpdate(result._id, {$set : {id_user:result2._id }})
+        console.log(result3)
+        res.send({ msg: result2 })
+        }
+        else{
+          if (req.body.user_role == 'patient'){
+            const result = await Patient.create(req.body).catch(err => err)
+            let user = new User(req.body);
+            user.id_patient = result._id;
+            user.user_image =req.file.filename;
+            const result2 = await User.create(user).catch(err => err)
+            const result3 = await Patient.findByIdAndUpdate(result._id, {$set : {id_user:result2._id }})
+            console.log(result3)
+          res.send({ msg: result2 })
+          }
+        }
+      }
+      
     }
     else {
       level = "Your password must contain at least 8 characters and less then 20";
