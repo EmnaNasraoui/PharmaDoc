@@ -19,9 +19,11 @@ var ProductSchema = new mongoose.Schema({
     },
 
     Date_Of_Expiration: {
-        type: String,
-
+        type: String
     },
+    
+    Amount:{type:Number,
+        min:0},
 
     Product_Category: {
         type: String,
