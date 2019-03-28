@@ -3,6 +3,7 @@ var Patient = require('../models/patient');
 var Doctor = require('../models/doctor');
 var Pharmacy = require('../models/pharmacy');
 var RDV = require('../models/RDV');
+var Products = require('../models/products');
 var user = require('../models/user')
 let Mongoose = require('mongoose');
 let ObjectId = Mongoose.Types.ObjectId;
@@ -28,14 +29,25 @@ res.send(result)
 
 router.get('/get_list_pharmacy_Doctor_Part/:id_doctor', async (req,res)=>{
     let id = ObjectId(req.params.id_doctor);
-    const result = await Doctor.find({_id:id}).populate({path:'partnership',select:['Time_Of_Opening','Time_Of_Closing']}).catch(err => err)
+    const result = await Doctor.findById({_id:id}).populate({path:'partnership',select:['Time_Of_Opening','Time_Of_Closing']}).catch(err => err)
 res.send(result)
 })
 
 
 router.get('/get_list_Doctor_Pharmacy_Part/:id_pharmacy', async (req,res)=>{
     let id = ObjectId(req.params.id_pharmacy);
-    const result = await Pharmacy.find({_id:id}).populate({path:'Pharmacy_Doctor',select:['specialty']}).catch(err => err)
+    const result = await Pharmacy.findById({_id:id}).populate({path:'Pharmacy_Doctor',select:['specialty']}).catch(err => err)
+res.send(result)
+})
+
+
+router.get('/get_product/:id_product/:numb_product', async (req,res)=>{
+    let id = ObjectId(req.params.id_product);
+    let numb = req.params.numb_product
+    const result = await Products.findById({_id:id}).catch(err => err)
+    let  qunt = result.Amount-numb;
+    const result1 = await Products.findByIdAndUpdate({_id:id},{$set:{Amount:qunt}}).catch(err => err)
+
 res.send(result)
 })
 
