@@ -7,11 +7,6 @@ var User = require('../models/user')
 let Mongoose = require('mongoose');
 let ObjectId = Mongoose.Types.ObjectId;
 
-router.post('/addPatient', async (req,res)=>{
-    const result = await Patient.create(req.body).catch(err => err)
-    res.send(result)
-})
-
 
 router.post('/getRDV/:id_doctor', async (req,res)=>{
     let id = ObjectId(req.params.id_doctor);
@@ -27,7 +22,7 @@ router.get('/get_list_doctor', async (req,res)=>{
 
 
 router.get('/get_list_pharmacy', async (req,res)=>{
-    const result = await user.find({}).populate({path:'id_pharmacy',select:['Time_Of_Opening','Time_Of_Closing']}).catch(err => err)
+    const result = await user.find({user_role: 'pharmacy'}).populate({path:'id_pharmacy',select:['Time_Of_Opening','Time_Of_Closing']}).catch(err => err)
 res.send(result)
 })
 
