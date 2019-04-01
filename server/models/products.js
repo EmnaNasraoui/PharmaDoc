@@ -6,11 +6,7 @@ var ProductSchema = new mongoose.Schema({
     },
 
     Price: {
-        type: String
-    },
-
-    Stock: {
-        type: String
+        type: Number
     },
 
     Date_Of_Entry: {
@@ -27,7 +23,7 @@ var ProductSchema = new mongoose.Schema({
 
     Product_Category: {
         type: String,
-        enum: ['Drug', 'Bio Product', 'Aesthetic Product', 'Accessory']
+        enum: ['Drug','sirop','injectables','Poudre','dermiques', 'Bio Product', 'Aesthetic Product', 'Accessory']
 
     },
 

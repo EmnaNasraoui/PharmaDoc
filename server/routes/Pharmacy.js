@@ -2,6 +2,7 @@ const router = require('express').Router()
 var Pharmacy = require('../models/pharmacy');
 var Doctor = require('../models/doctor');
 var Partnership = require('../models/partnership');
+var Product = require('../models/products');
 let Mongoose = require('mongoose');
 let ObjectId = Mongoose.Types.ObjectId ;
 router.post('/addPharmacy', async (req,res)=>{
@@ -36,6 +37,11 @@ router.post('/deleteaPartnership/:id_pharmacy/:id_doctor', async (req, res) => {
     const result = await Pharmacy.updateOne({ $pull: { Pharmacy_Doctor: Id_doctor } }).exec().catch(err => err)
     const results = await Doctor.updateOne({ $pull: { partnership: Id_pharmacy } }).exec().catch(err => err)
     res.send({ msg: result, message: results})
+})
+
+router.post('/addProduct', async (req,res)=>{
+    const result = await Product.create(req.body).catch(err => err)
+    res.send(result)
 })
 
 module.exports = router
