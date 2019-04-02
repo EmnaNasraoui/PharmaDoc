@@ -1,4 +1,4 @@
-<section class="register-block">
+<!-- <section class="register-block">
   <div class="container">
     <div class="row">
       <div class="col-md-5">
@@ -63,5 +63,188 @@
       </div>
     </div>
   </div>
-</section>
+</section>  -->
 <!-- multiple -->
+
+<!-- Nav -->
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container">
+    <!-- LOGO -->
+    <a class="navbar-brand page-scroll" href="index.html"><i class="fa fa-heartbeat" aria-hidden="true"></i> Kosi<span
+        class="text-blue text-light">Medic</span></a>
+    <!-- END / LOGO -->
+
+    <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+        <li class="hidden">
+          <a class="page-scroll" href="#page-top"></a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+            aria-expanded="false">Home</a>
+          <ul class="dropdown-menu dropdown-menu-left">
+            <li><a href="index.html">Home Default</a></li>
+            <li><a href="home-form.html">Home With Form</a></li>
+            <li><a href="index-v2.html">Home Colorful Navigation</a></li>
+            <li><a href="index-v3.html">Home Without Slider</a></li>
+            <li><a href="https://www.mianfolio.com/kosimedic/v1.3.1/boxed/index.html">Home Boxed</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+            aria-expanded="false">About</a>
+          <ul class="dropdown-menu dropdown-menu-left">
+            <li><a href="about.html">About us</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="testimonials.html">Testimonials</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+            aria-expanded="false">Doctors</a>
+          <ul class="dropdown-menu dropdown-menu-left">
+            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Doctors <i
+                  class="fa fa-angle-down" aria-hidden="true"></i></a>
+              <ul class="dropdown-menu">
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="doctor-profile.html">Doctor Profile</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+            aria-expanded="false">Departments</a>
+          <ul class="dropdown-menu dropdown-menu-left">
+            <li><a href="departments.html">Departments</a></li>
+            <li><a href="department-single.html">Department Single</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="timetable.html">Timetable</a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+            aria-expanded="false">Feautures</a>
+          <ul class="dropdown-menu dropdown-menu-left">
+            <li><a href="buttons.html">Buttons</a></li>
+            <li><a href="tabs.html">Tabs</a></li>
+            <li><a href="typography.html">Typography</a></li>
+            <li><a href="icons.html">Icons</a></li>
+            <li><a href="grid.html">Grids</a></li>
+            <li><a href="alerts.html">Notifications</a></li>
+            <li><a href="404.html">404</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+            aria-expanded="false">Blog</a>
+          <ul class="dropdown-menu dropdown-menu-left">
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="blog-single.html">Blog Single</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="contact.html">Contact</a>
+        </li>
+      </ul> <!-- END / NAVBAR RIGHT -->
+    </div>
+  </div> <!-- END CONTAINER -->
+</nav>
+<!-- ./end Nav -->
+
+<!-- Home With Form -->
+<section id="home-w-form">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="home-intro-text">
+          <h3>Our Dedication is What</h3>
+          <h2 class="text-dark">You Can Trust</h2>
+          <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining
+            essentially unchanged.</p>
+          <a href="#" class="btn border medium">Learn More</a>
+        </div>
+      </div>
+
+      <div class="col-md-10 col-md-offset-1">
+        <div class="home-form">
+          <h3>Register Now</h3>
+          <form [formGroup]="UserForm">
+            <div class="form-group col-md-6">
+              <label>First Name</label>
+              <input type="text" class="form-control" formControlName="first_name" placeholder="">
+            </div>
+            <div class="form-group col-md-6">
+              <label>Last Name</label>
+              <input type="text" class="form-control" formControlName="last_name" placeholder="">
+            </div>
+            <div class="form-group col-md-5">
+              <label>Birthday</label>
+              <input type="date" class="form-control" formControlName="birthday" placeholder="">
+            </div>
+            <div class="form-group col-md-5">
+              <label>Address</label>
+              <input type="text" class="form-control"formControlName="adresse" placeholder="">
+            </div>
+            <div class="col-md-5">
+            <mat-form-field>
+              <mat-label>Select</mat-label>
+              <mat-select  formControlName="user_role">
+                <mat-option *ngFor="let Role of Roles" [value]="Role.value">
+                  {{Role.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+            <div class="form-group col-md-5" *ngIf="UserForm.value.user_role == 'doctor'">
+              <label>Specialty</label>
+              <input type="text" class="form-control" placeholder="" formControlName="specialty">
+            </div>
+            <div class="form-group col-md-5">
+                <label>Email</label>
+                <input type="email" class="form-control" placeholder="" formControlName="email">
+              </div>
+            <div class="form-group col-md-5">
+              <label>Password</label>
+              <input type="password" class="form-control" placeholder="" formControlName="password">
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                </div>
+                <div class="custom-file">
+                  <input #file type="file"  accept='image/*' (change)="preview(file.files);selectedFile($event)" name="user_image" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                 
+                  <img [src]="imgURL || 'http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png'" class="imageSize">
+                  <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                </div>
+              </div>
+              <br>
+            <div class="form-check">
+              <button (click)="AddUser()" [disabled]="!UserForm.valid" class="btn btn-register float-right margin">Sign up</button>
+            </div>
+  
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- #/home-w-form -->
+<!-- Scroll to top -->
+<div class="scroll-top">
+  <a href="#totop"><i class="fa fa-angle-double-up"></i></a>
+</div>
+<!-- ./end Scroll to top -->
