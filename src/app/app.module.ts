@@ -46,13 +46,21 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { HomeComponent } from './home/home.component';
+import { DoctorComponent } from './doctor/doctor.component';
+import { AlldoctorsComponent } from './doctor/alldoctors/alldoctors.component';
+import { SingledoctorComponent } from './doctor/singledoctor/singledoctor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    HomeComponent,
+    DoctorComponent,
+    AlldoctorsComponent,
+    SingledoctorComponent
   ],
   imports: [
     BrowserModule,

@@ -32,6 +32,12 @@ router.get('/getDoctor/:id_doctor', async (req, res) => {
     res.send(result)
 })
 
+router.get('/getDoctors', async (req, res) => {
+    const result = await Doctor.find().exec().catch(err => err)
+    console.log(result);
+    res.send(result)
+})
+
 router.get('/acceptRDV/:id_doctor/:id_RDV', async (req, res) => {
     let id_doctor = { _id: ObjectId(req.params.id_doctor) }
     let id_RDV = { _id: ObjectId(req.params.id_RDV) }
