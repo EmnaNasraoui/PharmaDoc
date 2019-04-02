@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth.service';
+import { Router } from '@angular/router';
 export interface Role {
   value: string;
   viewValue: string;
@@ -39,7 +40,7 @@ export class SignupComponent implements OnInit {
     }
   }
   UserForm: FormGroup;
-  constructor(private AuthService: AuthService) {
+  constructor(private AuthService: AuthService, private router: Router) {
     this.UserForm = new FormGroup({
       first_name: new FormControl('', [Validators.required]),
       last_name: new FormControl('', [Validators.required]),
@@ -77,6 +78,7 @@ export class SignupComponent implements OnInit {
           console.log(data)
         })
         alert('you are added with success')
+        this.router.navigate(['/auth/login'])
 
       }
       else {
@@ -95,6 +97,7 @@ export class SignupComponent implements OnInit {
             console.log(data)
           })
           alert('you are added with success')
+          this.router.navigate(['/auth/login'])
         }
         else {
           if (this.UserForm.value.user_role == 'patient') {
@@ -112,6 +115,8 @@ export class SignupComponent implements OnInit {
               console.log(data)
             })
             alert('you are added with success')
+            this.router.navigate(['/auth/login'])
+
           }
           else {
             alert('error')
