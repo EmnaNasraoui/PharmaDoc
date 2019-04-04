@@ -6,14 +6,17 @@ var Partnership = require('../models/partnership');
 var Product = require('../models/products');
 let Mongoose = require('mongoose');
 let ObjectId = Mongoose.Types.ObjectId ;
+
+
 router.post('/addPharmacy', async (req,res)=>{
     const result = await Pharmacy.create(req.body).catch(err => err)
     res.send(result)
-})
+}) ;
 
 router.post('/editPharmacy/:id', async (req, res) => {
     const result = await Pharmacy.findByIdAndUpdate(req.params.id, { $set: req.body }).catch(err => err)
     res.send(result)
+<<<<<<< HEAD
 })
 router.post('/editPharmacyTimes/:id', async (req, res) => {
     const result = await Pharmacy.findByIdAndUpdate(req.params.id, { $push:{ Schedule : req.body}}).catch(err => err)
@@ -25,6 +28,9 @@ router.get('/getPharmacyById/:id_pharmacy', async (req, res) => {
     const result = await User.findOne({id_pharmacy:Id_pharmacy}).populate({path :'id_pharmacy', select :['Schedule']}).catch(err => err)
     res.send(result)
 })
+=======
+}) ;
+>>>>>>> 180220ff826ac65560b4b5943724cba5d3f50842
 
 router.post('/ValidatePartnership/:id_pharmacy/:id_doctor/:id_partnership', async (req, res) => {
     let Id_pharmacy = { _id: ObjectId(req.params.id_pharmacy) }
@@ -36,12 +42,12 @@ router.post('/ValidatePartnership/:id_pharmacy/:id_doctor/:id_partnership', asyn
     const result2 = await Partnership.findByIdAndUpdate(req.params.id_partnership,{$set: { PartnerShip_Status : 2 } }).exec().catch(err => err)
 
     res.send({ msg: result, message: results, aa : result2 })
-})
+}) ;
 
 router.post('/RejectPartnership/:id_partnership', async (req, res) => { 
     const result2 = await Partnership.findByIdAndUpdate(req.params.id_partnership,{$set: { PartnerShip_Status : 3 } }).exec().catch(err => err)
     res.send({message: result2 })
-})
+}) ; 
 
 router.post('/deleteaPartnership/:id_pharmacy/:id_doctor', async (req, res) => {
     let Id_pharmacy = ObjectId(req.params.id_pharmacy)
@@ -49,11 +55,11 @@ router.post('/deleteaPartnership/:id_pharmacy/:id_doctor', async (req, res) => {
     const result = await Pharmacy.updateOne({ $pull: { Pharmacy_Doctor: Id_doctor } }).exec().catch(err => err)
     const results = await Doctor.updateOne({ $pull: { partnership: Id_pharmacy } }).exec().catch(err => err)
     res.send({ msg: result, message: results})
-})
+}) ;  
 
 router.post('/addProduct', async (req,res)=>{
     const result = await Product.create(req.body).catch(err => err)
     res.send(result)
-})
+}) ;
 
-module.exports = router
+module.exports = router 
