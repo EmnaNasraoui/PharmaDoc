@@ -63,7 +63,6 @@ router.post('/signup', upload.single('image'),async (req, res) =>{
           const result = await Pharmacy.create(req.body).catch(err => err)
           let user = new User(req.body);
           user.id_pharmacy = result._id;
-          user.user_image =req.file.filename;
           const result2 = await User.create(user).catch(err => err)
           const result3 = await Pharmacy.findByIdAndUpdate(result._id, {$set : {id_user:result2._id }})
         console.log(result3)
@@ -74,7 +73,6 @@ router.post('/signup', upload.single('image'),async (req, res) =>{
             const result = await Patient.create(req.body).catch(err => err)
             let user = new User(req.body);
             user.id_patient = result._id;
-            user.user_image =req.file.filename;
             const result2 = await User.create(user).catch(err => err)
             const result3 = await Patient.findByIdAndUpdate(result._id, {$set : {id_user:result2._id }})
             console.log(result3)

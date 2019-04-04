@@ -1,0 +1,89 @@
+<!--Modal Full Message
+<div class="modal fade right" id="ModalMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+
+  <div class="modal-dialog modal-full-height modal-right" role="document">
+
+
+    <div class="modal-content">
+      <div class="modal-header messageBox">
+        <h4 class="modal-title w-100" id="myModalLabel">Message Box</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let data of allUserMessage; let i = index">
+          <div *ngFor="let datas of [data]">
+            <div (click)="findConversation(datas.user._id);getUserMessage(datas.user._id)" data-toggle="modal"
+              data-target="#sideModalTR" class="row messagePointer">
+              <div *ngFor="let image of datas.aboutme" class="col-md-2">
+                <img class="imageUser" src="http://localhost:4000/{{removeFakePathUrl(image.photo)}}">
+              </div>
+              <div class="col-md-2">
+                <h6>{{datas.user.username}}</h6>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+<!--End Of ModalFull Message-->
+<!--Modal Private MessageConversation
+<div class="modal fade right" id="sideModalTR" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog  messagedialog modal-side modal-bottom-left" role="document">
+    <div class="modal-content">
+      <div class="modal-header" *ngFor="let use of userMessage">
+        <h4 class="modal-title w-100" id="myModalLabel">{{use.user.username}}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div #scrollMe class="modal-body messagebody">
+        <div *ngFor="let msg of privateMessage">
+          <div *ngFor="let sms of msg?.messages">
+            <div class="row justify-content-end" *ngIf="sms.from === token['User']._id">
+
+              <div style="margin-bottom: 10px;" class="col-md-5">
+
+                <p class="speech-bubble">{{sms.contenu}}</p>
+
+              </div>
+
+
+            </div>
+            <div class="row" *ngIf="sms.from !== token['User']._id">
+              <div style="margin-bottom: 10px;" class="col-md-4">
+
+                <p class="speech-bubble2">{{sms.contenu}}</p>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer" *ngFor="let use of userMessage" [formGroup]="messageSend">
+
+        <mat-form-field class="example-full-width">
+          <textarea formControlName="contenu" class="example-form" matInput placeholder="new Message"></textarea>
+        </mat-form-field>
+        <button [disabled]="messageSend.invalid" (click)="sendMessage(use.user._id)" color="primary" mat-icon-button><i
+            class="material-icons">arrow_forward_ios</i></button>
+
+      </div>
+    </div>
+  </div>
+</div>-->
+<p>
+  test works
+</p>

@@ -1,3 +1,5 @@
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+ 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -50,6 +52,8 @@ import { HomeComponent } from './home/home.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { AlldoctorsComponent } from './doctor/alldoctors/alldoctors.component';
 import { SingledoctorComponent } from './doctor/singledoctor/singledoctor.component';
+import { TestComponent } from './test/test.component';
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 @NgModule({
   declarations: [
@@ -60,7 +64,8 @@ import { SingledoctorComponent } from './doctor/singledoctor/singledoctor.compon
     HomeComponent,
     DoctorComponent,
     AlldoctorsComponent,
-    SingledoctorComponent
+    SingledoctorComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
@@ -103,9 +108,11 @@ import { SingledoctorComponent } from './doctor/singledoctor/singledoctor.compon
     BrowserAnimationsModule,
       FormsModule,
       ReactiveFormsModule,
-      HttpClientModule  ],
+      HttpClientModule, 
+         SocketIoModule.forRoot(config)
+    ],
   exports: [ ],
-  providers: [ CookieService],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

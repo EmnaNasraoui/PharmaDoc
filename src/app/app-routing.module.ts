@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { AlldoctorsComponent } from './doctor/alldoctors/alldoctors.component';
 import { SingledoctorComponent } from './doctor/singledoctor/singledoctor.component';
 import { DoctorComponent } from './doctor/doctor.component';
+import { TestComponent } from './test/test.component';
+
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -23,7 +25,8 @@ const routes: Routes = [
       {path :'singledoctor', component :SingledoctorComponent},
       {path :'**', redirectTo:'alldoctors' }
     ]
-  }
+  },
+  { path:'test',component: TestComponent}
 ];
 
 @NgModule({
