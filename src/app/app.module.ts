@@ -49,6 +49,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { TestComponent } from './test/test.component';
+import { PharmacyComponent } from './pharmacy/pharmacy.component';
+import { PharmacyProfileComponent } from './pharmacy/pharmacy-profile/pharmacy-profile.component';
+import { AllPharmacyComponent } from './pharmacy/all-pharmacy/all-pharmacy.component';
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 @NgModule({
@@ -57,7 +60,10 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     AuthComponent,
     LoginComponent,
     SignupComponent,
-    TestComponent
+    TestComponent,
+    PharmacyComponent,
+    PharmacyProfileComponent,
+    AllPharmacyComponent
   ],
   imports: [
     BrowserModule,

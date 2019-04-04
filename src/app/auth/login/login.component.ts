@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class LoginComponent implements OnInit {
   UserForm: FormGroup
   token: any;
-  constructor(private authService: AuthService, private CookieService:CookieService) {
+  constructor(private authService: AuthService, private CookieService:CookieService, private router : Router) {
     this.UserForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
@@ -27,7 +28,7 @@ export class LoginComponent implements OnInit {
       this.token = data.token
       this.CookieService.set('token',this.token);
       console.log(this.token)
-
+      this.router.navigate(['/pharmacy/pharmacyProfile'])
     })
   }
 }
