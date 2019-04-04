@@ -1,0 +1,277 @@
+<section class="gardient-bg-small">
+  <div class="container">
+    <h1 class="pull-left">Doctor Profile</h1>
+    <div class="pull-right">
+      <ol class="breadcrumb">
+        <li><a href="index.html">Home</a></li>
+        <li class="active">Doctor Profile</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="doctor-profile" class="default-bg" *ngFor='let result of results'>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-image">
+          <img src="img/doctor-profile.jpg" alt="Doctor Profile">
+        </div>
+        <h5 class="mt20"><b>I am avaliable every day</b></h5>
+        <div class="form-group col-md-6">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Schedule
+          </button>
+        </div>
+        <table class="table table-striped" *ngFor = " let Schedules of result.id_pharmacy.Schedule ">
+          <tr>
+            <td>{{Schedules.day}}</td>
+            <td>{{Schedules.Time_Of_Opening}}h – {{Schedules.Time_Of_Closing}}h</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-md-8" >
+        <h3 class="text-blue">Dr. {{result.first_name}}</h3>
+        <p>{{result.user_role}}</p>
+        <p class="mt20">Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which
+          looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or
+          non-characteristic words etc.</p><br>
+        <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+          recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><br>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="meet-doctors-wide" class="grey-bg">
+  <div class="container">
+    <div class="section-title">
+      <p class="text-blue animated" data-animation="bounceInLeft">Meet others</p>
+      <h2 class="animated" data-animation="bounceInLeft">Doctors</h2>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="doctor-box">
+          <img src="img/doctors/profile-1.jpg" alt="">
+          <div class="doctor-box-content">
+            <a href="doctor-profile.html">
+              <h3>Dr. Marko Doe</h3>
+              <p>Dentalist</p>
+            </a>
+            <p class="doctor-box-info">There are many variations of passages..</p><br>
+            <div class="doctor-social">
+              <i class="fa fa-phone"></i>
+              <i class="fa fa-skype"></i>
+              <i class="fa fa-facebook"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="doctor-box">
+          <img src="img/doctors/profile-2.jpg" alt="">
+          <div class="doctor-box-content">
+            <a href="doctor-profile.html">
+              <h3>Dr. Marko Doe</h3>
+              <p>Dentalist</p>
+            </a>
+            <p class="doctor-box-info">There are many variations of passages..</p><br>
+            <div class="doctor-social">
+              <i class="fa fa-phone"></i>
+              <i class="fa fa-skype"></i>
+              <i class="fa fa-facebook"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="doctor-box">
+          <img src="img/doctors/profile-3.jpg" alt="">
+          <div class="doctor-box-content">
+            <a href="doctor-profile.html">
+              <h3>Dr. Marko Doe</h3>
+              <p>Dentalist</p>
+            </a>
+            <p class="doctor-box-info">There are many variations of passages..</p><br>
+            <div class="doctor-social">
+              <i class="fa fa-phone"></i>
+              <i class="fa fa-skype"></i>
+              <i class="fa fa-facebook"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="doctor-box">
+        <img src="img/doctors/profile-2.jpg" alt="">
+        <div class="doctor-box-content">
+          <a href="doctor-profile.html">
+            <h3>Dr. Marko Doe</h3>
+            <p>Dentalist</p>
+          </a>
+          <p class="doctor-box-info">There are many variations of passages..</p><br>
+          <div class="doctor-social">
+            <i class="fa fa-phone"></i>
+            <i class="fa fa-skype"></i>
+            <i class="fa fa-facebook"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="doctor-box">
+        <img src="img/doctors/profile-3.jpg" alt="">
+        <div class="doctor-box-content">
+          <a href="doctor-profile.html">
+            <h3>Dr. Marko Doe</h3>
+            <p>Dentalist</p>
+          </a>
+          <p class="doctor-box-info">There are many variations of passages..</p><br>
+          <div class="doctor-social">
+            <i class="fa fa-phone"></i>
+            <i class="fa fa-skype"></i>
+            <i class="fa fa-facebook"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="doctor-box">
+        <img src="img/doctors/profile-1.jpg" alt="">
+        <div class="doctor-box-content">
+          <a href="doctor-profile.html">
+            <h3>Dr. Marko Doe</h3>
+            <p>Dentalist</p>
+          </a>
+          <p class="doctor-box-info">There are many variations of passages..</p><br>
+          <div class="doctor-social">
+            <i class="fa fa-phone"></i>
+            <i class="fa fa-skype"></i>
+            <i class="fa fa-facebook"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <!-- Container -->
+  <div class="container">
+    <!-- Row Begin -->
+    <div class="row">
+
+      <div class="col-md-3">
+        <div class="widget">
+          <h2 class="logo-font"><i class="fa fa-heartbeat" aria-hidden="true"></i> Kosi<span
+              class="text-blue text-light">Medic</span></h2><br>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="widget">
+          <h3>Socials <span class="bottom-lin"></span></h3>
+          <ul>
+            <li>Facebook</li>
+            <li>Twitter</li>
+            <li>Youtube</li>
+            <li>Linkedin</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="widget">
+          <h3>About Us</h3>
+          <ul>
+            <li><a href="doctors.html">Doctors</a></li>
+            <li><a href="departments.html">Departments</a></li>
+            <li><a href="timetable.html">Timetable</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="widget">
+          <h3>Contact</h3>
+          <ul>
+            <li>My Street, NY 10036, United States</li>
+            <li>Phone: 1-800-555-5555</li>
+            <li>Email: example@kosimedic.com</li>
+            <li>Office Offers: 09:00am - 17:00pm</li>
+          </ul>
+        </div>
+      </div>
+    </div> <!-- ./end Row -->
+  </div> <!-- ./end Container -->
+  <!-- Footer Copyright -->
+  <div class="footer-slogan">
+    &copy; 2016 KosiMedic
+  </div>
+  <!-- ./end Footer Copyright -->
+</footer>
+<!-- ./end Footer -->
+
+<!-- Scroll to top -->
+<div class="scroll-top">
+  <a href="#totop"><i class="fa fa-angle-double-up"></i></a>
+</div>
+<!-- ./end Scroll to top -->
+<!-- Modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Schedule</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="PharmacyForm">
+        <div class="modal-body">
+          <div class="form-group col-md-4">
+            <mat-form-field>
+                <mat-label>Select Day</mat-label>
+                <mat-select formControlName="day">
+                  <mat-option *ngFor="let Day of Days" [value]="Day.value">
+                    {{Day.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+          </div>
+          <div class="form-group col-md-4">
+              <mat-form-field>
+                  <mat-label>Select Time Of Opening</mat-label>
+                  <mat-select formControlName="Time_Of_Opening">
+                    <mat-option *ngFor="let TimeOfOpening of TimeOfOpenings" [value]="TimeOfOpening.value">
+                      {{TimeOfOpening.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+          </div>
+          <div class="form-group col-md-4">
+              <mat-form-field>
+                  <mat-label>Select Time Of Closing</mat-label>
+                  <mat-select formControlName="Time_Of_Closing">
+                    <mat-option *ngFor="let TimeOfClosing of TimeOfClosings" [value]="TimeOfClosing.value">
+                      {{TimeOfClosing.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" (click)="EditPharmacyProfile()" data-dismiss="modal" class="btn btn-primary">Save changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> 
+<!-- $cdk-z-index-overlay-container -->

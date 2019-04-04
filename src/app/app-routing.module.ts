@@ -8,6 +8,9 @@ import { AlldoctorsComponent } from './doctor/alldoctors/alldoctors.component';
 import { SingledoctorComponent } from './doctor/singledoctor/singledoctor.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { TestComponent } from './test/test.component';
+import { PharmacyComponent } from './pharmacy/pharmacy.component';
+import { PharmacyProfileComponent } from './pharmacy/pharmacy-profile/pharmacy-profile.component';
+import { AllPharmacyComponent } from './pharmacy/all-pharmacy/all-pharmacy.component';
 
 
 const routes: Routes = [
@@ -26,6 +29,10 @@ const routes: Routes = [
       {path :'**', redirectTo:'alldoctors' }
     ]
   },
+  {path:'pharmacy', component : PharmacyComponent, children:[
+    {path :'pharmacyProfile', component : PharmacyProfileComponent},
+    {path : 'allPharmacy', component : AllPharmacyComponent}
+  ]},
   { path:'test',component: TestComponent}
 ];
 

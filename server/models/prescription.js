@@ -8,11 +8,10 @@ let PrescriptionSchema = new Schema({
     Doctor_wr: { type:Schema.Types.ObjectId,
             ref:'User', 
             required:true },
-    Product: {type:Schema.Types.ObjectId,
-            ref:'Products',
-            required:true},
-    Pharmacy_part: {type:Schema.Types.ObjectId,
-           ref:'Pharmacy' }
-
+    Patient_ex: { type:Schema.Types.ObjectId,
+                ref:'User', 
+                required:true },
+    Product: {type:String,
+            required:true}
 })
 module.exports = mongoose.model('Prescription',PrescriptionSchema);
