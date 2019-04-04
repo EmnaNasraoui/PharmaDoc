@@ -27,13 +27,13 @@ router.post('/deleteaDoctor/:id_doctor', async (req, res) => {
 
 router.get('/getDoctor/:id_doctor', async (req, res) => {
     let id_doctor = { _id: ObjectId(req.params.id_doctor) }
-    const result = await Doctor.findOne(id_doctor).exec().catch(err => err)
+    const result = await Doctor.findOne(id_doctor).populate({ path:'id_user', select: ['first_name', 'last_name','adresse','user_image','_id']}).exec().catch(err => err)
     console.log(result);
     res.send(result)
 })
 
 router.get('/getDoctors', async (req, res) => {
-    const result = await Doctor.find().exec().catch(err => err)
+    const result = await Doctor.find().populate({ path:'id_user', select: ['first_name', 'last_name','adresse','user_image','_id']}).exec().catch(err => err)
     console.log(result);
     res.send(result)
 })

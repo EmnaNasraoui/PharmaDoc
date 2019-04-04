@@ -49,27 +49,28 @@ router.post('/signup', upload.single('image'),async (req, res) =>{
       }
       level = (lvl == 1) ? "easy" : (lvl == 2) ? "Soft" : (lvl == 3) ? "Hard" : "";
       console.log(level)
-      if (req.body.user_role == 'doctor'){
+      const email = await User.findOne({email : req.body.email})
+      if (req.body.user_role == 'doctor' && !email){
         const result = await Doctor.create(req.body).catch(err => err)
         let user = new User(req.body);
         user.id_doctor = result._id;
         const result2 = await User.create(user).catch(err => err)
+        console.log(result2);
         const result3 = await Doctor.findByIdAndUpdate(result._id, {$set : {id_user:result2._id }})
         console.log(result3)
       res.send({ msg: result2 })
       }
       else{
-        if (req.body.user_role == 'pharmacy'){
+        if (req.body.user_role == 'pharmacy' && !email){
           const result = await Pharmacy.create(req.body).catch(err => err)
           let user = new User(req.body);
           user.id_pharmacy = result._id;
           const result2 = await User.create(user).catch(err => err)
           const result3 = await Pharmacy.findByIdAndUpdate(result._id, {$set : {id_user:result2._id }})
-        console.log(result3)
         res.send({ msg: result2 })
         }
         else{
-          if (req.body.user_role == 'patient'){
+          if (req.body.user_role == 'patient' && !email){
             const result = await Patient.create(req.body).catch(err => err)
             let user = new User(req.body);
             user.id_patient = result._id;

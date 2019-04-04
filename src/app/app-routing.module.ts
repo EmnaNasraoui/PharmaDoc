@@ -22,7 +22,7 @@ const routes: Routes = [
   {
     path: 'doctor', component: DoctorComponent , children :[
       {path :'alldoctors' , component: AlldoctorsComponent},
-      {path :'singledoctor', component :SingledoctorComponent},
+      {path :'singledoctor/:id', component :SingledoctorComponent},
       {path :'**', redirectTo:'alldoctors' }
     ]
   },
