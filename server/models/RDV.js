@@ -2,8 +2,8 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let RDVSchema = new Schema({
-    Date: {
-        type: Date,
+    Date_rdv: {
+        type: String,
         required: true
     },
     Doctor_avail: {
@@ -11,10 +11,16 @@ let RDVSchema = new Schema({
         ref: 'User',
         required: true
     },
+    Patient_sik:{
+        type:Schema.Types.ObjectId,
+        ref:'User',
+        required:true
+    },
 
     RDV_Statut: {
         type: String,
-        enum: ['0', '1']
+        enum: ['0', '1'],
+        default:'1'
     },
 
 
