@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { AuthService } from 'src/app/auth.service';
 import { Router } from '@angular/router';
 export interface Role {
   value: string;
   viewValue: string;
 }
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.css','fix.scss']
 })
 export class SignupComponent implements OnInit {
   Roles: Role[] = [
@@ -17,6 +18,7 @@ export class SignupComponent implements OnInit {
     { value: 'pharmacy', viewValue: 'Pharmacy' },
     { value: 'patient', viewValue: 'Patient' }
   ];
+
   public imagePath;
   imgURL: any;
   public message: string;
@@ -39,7 +41,9 @@ export class SignupComponent implements OnInit {
       this.imgURL = reader.result;
     }
   }
+  Schedule : FormArray;
   UserForm: FormGroup;
+  ScheduleForm : FormGroup
   constructor(private AuthService: AuthService, private router: Router) {
     this.UserForm = new FormGroup({
       first_name: new FormControl('', [Validators.required]),
@@ -51,14 +55,20 @@ export class SignupComponent implements OnInit {
       user_role: new FormControl(''),
       specialty: new FormControl(''),
       user_image: new FormControl(''),
+     /*  Schedule : new FormArray([this.createSchedule()]) */
+
     })
   }
-
   ngOnInit() { }
   selectedFile(event) {
     console.log(event.target.files[0])
     this.selectedImage = event.target.files[0]
   }
+ /*  createSchedule() : FormGroup {
+    return new FormGroup({
+     
+    })
+    } */
   AddUser() {
     if (this.UserForm.valid) {
       if (this.UserForm.value.user_role == 'doctor') {
@@ -91,6 +101,7 @@ export class SignupComponent implements OnInit {
           formData.append('password', this.UserForm.value.password);
           formData.append('adresse', this.UserForm.value.adresse);
           formData.append('user_role', this.UserForm.value.user_role);
+      /*     formData.append('Schedule', this.UserForm.value.Schedule); */
           formData.append('user_image', this.selectedImage.name);
           formData.append('image', this.selectedImage);
           this.AuthService.register(formData).subscribe((data: any) => {
