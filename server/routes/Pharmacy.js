@@ -16,7 +16,6 @@ router.post('/addPharmacy', async (req,res)=>{
 router.post('/editPharmacy/:id', async (req, res) => {
     const result = await Pharmacy.findByIdAndUpdate(req.params.id, { $set: req.body }).catch(err => err)
     res.send(result)
-<<<<<<< HEAD
 })
 router.post('/editPharmacyTimes/:id', async (req, res) => {
     const result = await Pharmacy.findByIdAndUpdate(req.params.id, { $push:{ Schedule : req.body}}).catch(err => err)
@@ -28,9 +27,6 @@ router.get('/getPharmacyById/:id_pharmacy', async (req, res) => {
     const result = await User.findOne({id_pharmacy:Id_pharmacy}).populate({path :'id_pharmacy', select :['Schedule']}).catch(err => err)
     res.send(result)
 })
-=======
-}) ;
->>>>>>> 180220ff826ac65560b4b5943724cba5d3f50842
 
 router.post('/ValidatePartnership/:id_pharmacy/:id_doctor/:id_partnership', async (req, res) => {
     let Id_pharmacy = { _id: ObjectId(req.params.id_pharmacy) }
