@@ -26,6 +26,10 @@ var UserSchema = new mongoose.Schema({
     type: String,
 
   },
+  birthday: {
+    type: String,
+
+  },
   user_image: { type: String },
 
   user_role: {

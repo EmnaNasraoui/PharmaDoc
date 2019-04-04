@@ -1,8 +1,8 @@
-@import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+/*@import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
 .register-block{
-    background: #DE6262;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to bottom, #3f4c6b, #3f4c6b);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to bottom, #3f4c6b , #3f4c6b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #DE6262;   fallback for old browsers */
+  /* background: -webkit-linear-gradient(to bottom, #3f4c6b, #3f4c6b);Chrome 10-25, Safari 5.1-6 */
+ /* background: linear-gradient(to bottom, #3f4c6b , #3f4c6b);W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ 
 float:left;
 width:100%;
 padding : 50px 0;
@@ -21,11 +21,11 @@ padding : 50px 0;
 .banner-text{width:70%; position:absolute; bottom:40px; padding-left:20px;}
 .banner-text h2{color:#fff; font-weight:600;}
 .banner-text h2:after{content:" "; width:100px; height:5px; background:#FFF; display:block; margin-top:20px; border-radius:3px;}
-.banner-text p{color:#fff;}
+.banner-text p{color:#fff;}*/
 .imageSize{
     height: 160px;
     width: 174px;
-    margin-top: 213px;
+    margin-top: 19px;
 }
 .margin{
     margin-bottom: 22px;
