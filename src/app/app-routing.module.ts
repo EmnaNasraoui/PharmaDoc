@@ -39,7 +39,7 @@ const routes: Routes = [
   {path:'patient',component:PatientComponent,children:[
     {path:'patientProfile',component:PatientProfileComponent},
     {path:'allPatient',component:AllPatientComponent},
-    {path:'**',component:AllPatientComponent}
+    {path:'**',redirectTo:'allPatient'}
   ]},
   { path:'test',component: TestComponent}
 ];

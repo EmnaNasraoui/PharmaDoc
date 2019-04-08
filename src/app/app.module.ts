@@ -1,5 +1,4 @@
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
- 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
