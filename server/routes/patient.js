@@ -40,7 +40,7 @@ router.get('/get_list_pharmacy_Doctor_Part/:id_doctor', async (req,res)=>{
 res.send(result)
 }) ;
 
-///////////////
+//////////////////
 router.get('/get_list_Doctor_Pharmacy_Part/:id_pharmacy', async (req,res)=>{
     let id = ObjectId(req.params.id_pharmacy);
     const result = await Pharmacy.findById({_id:id}).populate({path:'Pharmacy_Doctor',select:['specialty']}).catch(err => err)
