@@ -11,6 +11,9 @@ import { TestComponent } from './test/test.component';
 import { PharmacyComponent } from './pharmacy/pharmacy.component';
 import { PharmacyProfileComponent } from './pharmacy/pharmacy-profile/pharmacy-profile.component';
 import { AllPharmacyComponent } from './pharmacy/all-pharmacy/all-pharmacy.component';
+import { PatientComponent } from './patient/patient.component';
+import { PatientProfileComponent } from './patient/patient-profile/patient-profile.component';
+import { AllPatientComponent } from './patient/all-patient/all-patient.component';
 
 
 const routes: Routes = [
@@ -32,6 +35,11 @@ const routes: Routes = [
   {path:'pharmacy', component : PharmacyComponent, children:[
     {path :'pharmacyProfile', component : PharmacyProfileComponent},
     {path : 'allPharmacy', component : AllPharmacyComponent}
+  ]},
+  {path:'patient',component:PatientComponent,children:[
+    {path:'patientProfile',component:PatientProfileComponent},
+    {path:'allPatient',component:AllPatientComponent},
+    {path:'**',component:AllPatientComponent}
   ]},
   { path:'test',component: TestComponent}
 ];
