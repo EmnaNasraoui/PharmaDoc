@@ -1,0 +1,29 @@
+#meet-doctors-wide .doctor-box img {
+    border-radius: 6px;
+    width: 130px;
+    height: 122px;
+    border: 0px solid #e4e5e7;
+    position: absolute;
+    top: -51px;
+    left: 50%;
+    margin-left: -62px;
+    display: block;
+}
+.mycontent-left {
+    border-right: 2px solid #33333336;
+    height: 700px;
+    margin-top: -39px;
+    margin-left: 0px;
+    margin-right: -9px;
+  }
+.margin{
+    margin-left: -6px;
+    margin-top: 65px
+}
+.marginInput{
+    margin-left: -6px;
+}
+.btn-info{
+  margin-top: -26px;
+  padding: 1px 11px;
+}

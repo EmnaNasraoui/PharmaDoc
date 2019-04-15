@@ -1,3 +1,68 @@
-<p>
-  all-pharmacy works!
-</p>
+
+
+    	<section class="gardient-bg-small" >
+    		<div class="container">
+    			<h1 class="pull-left">All Pharmacy</h1>
+				<div class="pull-right">
+    			<ol class="breadcrumb">
+  					<li><a href="index.html">Home</a></li>
+  					<li class="active">All Pharmacy</li>
+				</ol>
+				</div>
+    		</div>
+    	</section>
+
+   		<section id="blog" class="default-bg" >
+   			<div class="container">
+   				<div class="row">
+   					<div class="col-md-9">
+   						<div class="blog-post" *ngFor="let result of results" >
+                  <div *ngFor="let res of [result.id_user]">
+                 <img *ngIf="res"src="http://localhost:3000/user/image/{{res.user_image}}" alt="Blog Image">
+                 <img *ngIf="!res" src="http://localhost:3000/user/image/500x500.jpg">
+                  </div>
+   							<div class="content">
+   								<p class="date"><i class="fa fa-calendar" aria-hidden="true"></i> September 08, 2016</p>
+								<h2 class="text-blue">{{result.Pharmacy_name}} </h2>
+								<p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes.</p>
+								<a routerLink="/pharmacy/viewProfile/{{result._id}}" class="btn blue small pull-right">View Profile</a>
+   							</div>
+   							<span class="clearfix"></span>
+   						</div>
+   						<div class="blog-pagination">
+   							<ul class="pagination">
+							  <li><a href="#" class="active">1</a></li>
+							  <li><a href="#">2</a></li>
+							  <li><a href="#"><i class="fa fa-long-arrow-right"></i></a></li>
+							</ul>
+   						</div>
+   					</div>
+   					<div class="col-md-3">
+   						<div class="blog-widget">
+   							<h3>Search</h3>
+   							<input type="text" placeholder="Search" class="form-control">
+   						</div>
+      					</div>
+   				</div>
+   			</div>
+   		</section>
+
+			<!-- Footer -->
+			<footer>
+				<!-- Container -->
+		
+				<!-- Footer Copyright -->
+				<div class="footer-slogan">
+				 PharmaDoc
+				</div>
+				<!-- ./end Footer Copyright -->
+			</footer>
+			<!-- ./end Footer -->
+
+			<!-- Scroll to top -->
+			<div class="scroll-top">
+				<a href="#totop"><i class="fa fa-angle-double-up"></i></a>
+			</div>
+			<!-- ./end Scroll to top -->
+
+	

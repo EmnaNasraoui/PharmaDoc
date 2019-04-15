@@ -1466,9 +1466,7 @@ ul.dropdown-menu > li:last-child > a {
 	position: absolute;
 	bottom: 9px;
 	left: -26px;
-    -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
-	    -ms-transform: rotate(45deg); /* IE 9 */
-            transform: rotate(45deg);
+    
 }
 
 .review .author {
@@ -1574,13 +1572,6 @@ ul.dropdown-menu > li:last-child > a {
 	        transition: all 0.3s ease;
 }
 
-#meet-doctors .doctor-box:hover img {
-	transform:rotate(-360deg);
-	-webkit-transition: all 0.3s ease;
-	   -moz-transition: all 0.3s ease;
-	     -o-transition: all 0.3s ease;
-	        transition: all 0.3s ease;
-}
 
 #meet-doctors .doctor-box:hover .doctor-box-content p.doctor-box-info {
 	padding-top: 0;
@@ -1680,7 +1671,7 @@ ul.dropdown-menu > li:last-child > a {
 }
 
 #meet-doctors-wide .doctor-box:hover img {
-	transform:rotate(-360deg);
+
 	-webkit-transition: all 0.3s ease;
 	   -moz-transition: all 0.3s ease;
 	     -o-transition: all 0.3s ease;
@@ -1793,21 +1784,18 @@ ul.dropdown-menu > li:last-child > a {
 12. Before / After
 **********************/
 #before-after img {
-	border: 6px solid #f4f4f4;.
+	border: 6px solid #f4f4f4;
 	width: 100%;
 }
 
 #before-after .img-before {
-	-ms-transform: rotate(7deg); /* IE 9 */
-    -webkit-transform: rotate(7deg); /* Chrome, Safari, Opera */
-    transform: rotate(7deg);
+
+	
 	padding: 40px;
 }
 
 #before-after .img-after {
-	-ms-transform: rotate(-7deg); /* IE 9 */
-    -webkit-transform: rotate(-7deg); /* Chrome, Safari, Opera */
-    transform: rotate(-7deg);
+
 	padding: 40px;
 	position: absolute;
 	top: 0;

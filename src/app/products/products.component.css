@@ -1,0 +1,16 @@
+#meet-doctors-wide .doctor-box img {
+  border-radius: 0px;
+  width: 169px;
+  height: 150px;
+  border: 1px solid #e4e5e7;
+  position: absolute;
+  top: -89px;
+  left: 50%;
+  margin-left: -81px;
+  display: block;
+}
+.drop{
+width: 232px;
+height: 98px;
+margin-top: 28px;
+}

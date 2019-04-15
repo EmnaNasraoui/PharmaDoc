@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   UserForm: FormGroup
   token: any;
-  constructor(private authService: AuthService, private CookieService:CookieService, private router : Router) {
+  constructor(private authService: AuthService, private router: Router) {
     this.UserForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
@@ -22,13 +22,18 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   login(){
-    this.authService.logIn(this.UserForm.value).subscribe((data:any)=>{
-      console.log(data)
-      alert(data.lvl)
-      this.token = data.token
-      this.CookieService.set('token',this.token);
-      console.log(this.token)
-      this.router.navigate(['/pharmacy/pharmacyProfile'])
+    this.authService.logIn(this.UserForm.value).subscribe((data: any) => {
+
+      if (data.lvl === 'Your connexion is valide') {
+        this.token = data.token;
+        this.authService.setToken(this.token);
+        this.authService.ConnectedToken = this.authService.ConnectedUser();
+        // this.authService.ConnectedToken['ownProducts'] = 0;
+        this.router.navigate(['/products/allProducts']);
+      }
+      else {
+        alert(data.lvl)
+      }
     })
   }
 }

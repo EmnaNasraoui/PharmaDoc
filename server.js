@@ -39,6 +39,5 @@ server.listen(process.env.PORT, function () {
 })
 
 app.get('/user/image/:name', async (req, res) => {
-  console.log(__dirname);
-  res.sendFile('C:\\Users\\emna\\Desktop\\PharmaDoc\\PharmaDoc\\server\\uploads\\'+ req.params.name)
+    res.sendFile('C:\\Users\\emna\\Desktop\\PharmaDoc\\PharmaDoc\\server\\uploads\\'+ req.params.name)
  });
