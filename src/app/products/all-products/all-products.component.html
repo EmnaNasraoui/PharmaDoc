@@ -1,0 +1,60 @@
+<section class="gardient-bg-small">
+  <div class="container">
+    <h1 class="pull-left">All Products</h1>
+    <div class="pull-right">
+      <ol class="breadcrumb">
+        <li><a href="index.html">Home</a></li>
+        <li class="active">All Products</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="meet-doctors-wide" class="grey-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="blog-widget ">
+          <h3 class="margin">Search</h3>
+          <ul>
+            <input placeholder="search"  [formControl]="productFilter">
+              <li *ngFor="let item of products | filterForProducts:{ Name: filterText, Price: filterText } : false">{{ item.value }} - {{ item.Name }} - {{ item.Price }}</li>
+            </ul>
+        </div>
+        <div class="form-group col-md-6">
+          <mat-form-field>
+            <mat-label>Select Product Category</mat-label>
+            <mat-select multiple>
+              <mat-option *ngFor="let Product_Category of Product_Categories" [value]="Product_Category.value">
+                {{Product_Category.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-9">
+
+      <div class="col-md-4" *ngFor="let product of products | orderByPrice ">
+        <div class="doctor-box">
+          <img src="http://localhost:3000/user/image/{{product.Product_image}}" alt="...">
+          <div class="doctor-box-content" style="height: 114%">
+            <a routerLink="/products/product/{{product._id}}">
+              <h3>
+                {{product.Name}}
+              </h3>
+              <p>{{product.Product_Pharmacy.Pharmacy_name}}</p>
+              <p>Category : {{product.Product_Category}}</p>
+              <p>Price : {{product.Price}}dt</p>
+              <p>Amount : {{product.Amount}}</p>
+              <p>Address : {{product.Product_Pharmacy.id_user.adresse}}</p>
+            </a>
+            <div class="doctor-social">
+              <button type="button" (click)="AddToCart(product._id)" class="btn btn-info">Add To MyCart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>

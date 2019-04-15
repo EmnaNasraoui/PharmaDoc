@@ -1,5 +1,5 @@
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
- 
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -56,6 +56,14 @@ import { TestComponent } from './test/test.component';
 import { PharmacyComponent } from './pharmacy/pharmacy.component';
 import { PharmacyProfileComponent } from './pharmacy/pharmacy-profile/pharmacy-profile.component';
 import { AllPharmacyComponent } from './pharmacy/all-pharmacy/all-pharmacy.component';
+import { ViewProfileComponent } from './pharmacy/view-profile/view-profile.component';
+import { ProductsComponent } from './products/products.component';
+import {orderByPrice} from './products/product/orderByPrice.pipe'
+import { FilterPipeModule } from 'ngx-filter-pipe';
+import { AllProductsComponent } from './products/all-products/all-products.component';
+import { ProductComponent } from './products/product/product.component';
+import { CartComponent } from './products/cart/cart.component';
+import { FilterForProductsPipe } from './filter-for-products.pipe';
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 @NgModule({
@@ -71,7 +79,14 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     TestComponent,
     PharmacyComponent,
     PharmacyProfileComponent,
-    AllPharmacyComponent
+    AllPharmacyComponent,
+    ViewProfileComponent,
+    ProductsComponent,
+    orderByPrice,
+    AllProductsComponent,
+    ProductComponent,
+    CartComponent,
+    FilterForProductsPipe
   ],
   imports: [
     BrowserModule,
@@ -114,8 +129,9 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     BrowserAnimationsModule,
       FormsModule,
       ReactiveFormsModule,
-      HttpClientModule, 
-         SocketIoModule.forRoot(config)
+      HttpClientModule,
+         SocketIoModule.forRoot(config),
+         FilterPipeModule
     ],
   exports: [ ],
   providers: [CookieService],

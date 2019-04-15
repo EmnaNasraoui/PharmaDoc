@@ -10,7 +10,7 @@ export interface Role {
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css','fix.scss']
+  styleUrls: ['./signup.component.css', 'fix.scss']
 })
 export class SignupComponent implements OnInit {
   Roles: Role[] = [
@@ -41,9 +41,9 @@ export class SignupComponent implements OnInit {
       this.imgURL = reader.result;
     }
   }
-  Schedule : FormArray;
+  Schedule: FormArray;
   UserForm: FormGroup;
-  ScheduleForm : FormGroup
+  ScheduleForm: FormGroup
   constructor(private AuthService: AuthService, private router: Router) {
     this.UserForm = new FormGroup({
       first_name: new FormControl('', [Validators.required]),
@@ -54,8 +54,9 @@ export class SignupComponent implements OnInit {
       adresse: new FormControl('', [Validators.required]),
       user_role: new FormControl(''),
       specialty: new FormControl(''),
+      Pharmacy_name: new FormControl(''),
       user_image: new FormControl(''),
-     /*  Schedule : new FormArray([this.createSchedule()]) */
+      /*  Schedule : new FormArray([this.createSchedule()]) */
 
     })
   }
@@ -64,11 +65,11 @@ export class SignupComponent implements OnInit {
     console.log(event.target.files[0])
     this.selectedImage = event.target.files[0]
   }
- /*  createSchedule() : FormGroup {
-    return new FormGroup({
-     
-    })
-    } */
+  /*  createSchedule() : FormGroup {
+     return new FormGroup({
+      
+     })
+     } */
   AddUser() {
     if (this.UserForm.valid) {
       if (this.UserForm.value.user_role == 'doctor') {
@@ -101,7 +102,7 @@ export class SignupComponent implements OnInit {
           formData.append('password', this.UserForm.value.password);
           formData.append('adresse', this.UserForm.value.adresse);
           formData.append('user_role', this.UserForm.value.user_role);
-      /*     formData.append('Schedule', this.UserForm.value.Schedule); */
+          formData.append('Pharmacy_name', this.UserForm.value.Pharmacy_name); 
           formData.append('user_image', this.selectedImage.name);
           formData.append('image', this.selectedImage);
           this.AuthService.register(formData).subscribe((data: any) => {

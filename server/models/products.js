@@ -17,17 +17,24 @@ var ProductSchema = new mongoose.Schema({
     Date_Of_Expiration: {
         type: String
     },
-    
-    Amount:  { type:Number,
-        min:0},
 
+    Product_image: {
+        type: String
+    },
+    Description: {
+        type: String
+    },
+    Amount: {
+        type: Number,
+        min: 0
+    },
     Product_Category: {
         type: String,
-        enum: ['Drug','sirop','injectables','Poudre','dermiques', 'Bio Product', 'Aesthetic Product', 'Accessory']
+        enum: ['Drug', 'sirop', 'injectables', 'Poudre', 'dermiques', 'Bio Product', 'Aesthetic Product', 'Accessory']
 
     },
 
-    Product_Pharmacy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pharmacy' }],
+    Product_Pharmacy: { type: mongoose.Schema.Types.ObjectId, ref: 'Pharmacy' },
 
 });
 
