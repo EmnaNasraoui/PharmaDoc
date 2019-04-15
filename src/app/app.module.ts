@@ -64,6 +64,9 @@ import { AllProductsComponent } from './products/all-products/all-products.compo
 import { ProductComponent } from './products/product/product.component';
 import { CartComponent } from './products/cart/cart.component';
 import { FilterForProductsPipe } from './filter-for-products.pipe';
+import { PatientComponent } from './patient/patient.component';
+import { PatientProfileComponent } from './patient/patient-profile/patient-profile.component';
+import { AllPatientComponent } from './patient/all-patient/all-patient.component';
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 @NgModule({
@@ -86,7 +89,10 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     AllProductsComponent,
     ProductComponent,
     CartComponent,
-    FilterForProductsPipe
+    FilterForProductsPipe,
+    PatientComponent,
+    PatientProfileComponent,
+    AllPatientComponent
   ],
   imports: [
     BrowserModule,

@@ -16,6 +16,9 @@ import { ProductsComponent } from './products/products.component';
 import { AllProductsComponent } from './products/all-products/all-products.component';
 import { ProductComponent } from './products/product/product.component';
 import { CartComponent } from './products/cart/cart.component';
+import { PatientComponent } from './patient/patient.component';
+import { PatientProfileComponent } from './patient/patient-profile/patient-profile.component';
+import { AllPatientComponent } from './patient/all-patient/all-patient.component';
 
 
 const routes: Routes = [
@@ -45,7 +48,13 @@ const routes: Routes = [
     {path : 'allProducts', component : AllProductsComponent},
     {path : 'product/:id', component : ProductComponent},
     { path : 'cart', component : CartComponent}
-  ]}
+  ]},
+  {path:'patient',component:PatientComponent,children:[
+    {path:'patientProfile',component:PatientProfileComponent},
+    {path:'allPatient',component:AllPatientComponent},
+    {path:'**',redirectTo:'allPatient'}
+  ]},
+  { path:'test',component: TestComponent}
 ];
 
 @NgModule({
