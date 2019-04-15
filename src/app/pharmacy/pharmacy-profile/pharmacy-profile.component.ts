@@ -76,25 +76,25 @@ export class PharmacyProfileComponent implements OnInit {
   ];
   id_pharmacy: any;
   results: any;
-PharmacyForm : FormGroup;
+  PharmacyForm: FormGroup;
 
-  constructor(private pharmacyService : PharmacyService, private cookieService : CookieService) { 
+  constructor(private pharmacyService: PharmacyService, private cookieService: CookieService) {
     this.PharmacyForm = new FormGroup({
-      day : new FormControl(''),
-      Time_Of_Opening : new FormControl(''),
-      Time_Of_Closing : new FormControl(''),
+      day: new FormControl(''),
+      Time_Of_Opening: new FormControl(''),
+      Time_Of_Closing: new FormControl(''),
     })
   }
 
   ngOnInit() {
-this.id_pharmacy = jwt_decode(this.cookieService.get('token')).id.id_pharmacy
-this.pharmacyService.GetPharmacyById(this.id_pharmacy).subscribe((data:any)=>{
-  this.results =[ data];
-})
+    this.id_pharmacy = jwt_decode(this.cookieService.get('token')).id.id_pharmacy
+    this.pharmacyService.GetPharmacyById(this.id_pharmacy).subscribe((data: any) => {
+      this.results = [data];
+    })
   }
-  EditPharmacyProfile(){
-    this.id_pharmacy= jwt_decode(this.cookieService.get('token')).id.id_pharmacy
-    this.pharmacyService.EditPharmacyById(this.id_pharmacy,this.PharmacyForm.value).subscribe((data:any)=>{
+  EditPharmacyProfile() {
+    this.id_pharmacy = jwt_decode(this.cookieService.get('token')).id.id_pharmacy
+    this.pharmacyService.EditPharmacyById(this.id_pharmacy, this.PharmacyForm.value).subscribe((data: any) => {
       console.log(data);
       this.ngOnInit()
     })

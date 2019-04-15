@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DoctorService {
   ID: any;
+  id_Doctor:any;
   setid(id) {
     this.ID = id;
   }
@@ -13,12 +14,17 @@ export class DoctorService {
   }
   constructor(private http: HttpClient) { }
 
-  getDoctors(){
+  getDoctors() {
     return this.http.get('http://localhost:3000/doctor/getDoctors');
   }
 
   getDoctorById(ID) {
     return this.http.get(`http://localhost:3000/doctor/getDoctor/${ID}`);
+
+  }
+
+  AddDoctorSchedule(id_Doctor,Doctor) {
+    return this.http.post(`http://localhost:3000/doctor/editDoctorTimes/${id_Doctor}`,Doctor);
 
   }
 }

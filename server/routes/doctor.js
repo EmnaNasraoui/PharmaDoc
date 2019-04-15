@@ -21,6 +21,10 @@ router.post('/editDoctor/:id', async (req, res) => {
     res.send(result)
 }) ;
 
+router.post('/editDoctorTimes/:id', async (req, res) => {
+    const result = await Doctor.findByIdAndUpdate(req.params.id, { $push:{ Schedule : req.body}}).catch(err => err)
+    res.send(result)
+})
 router.post('/deleteaDoctor/:id_doctor', async (req, res) => {
     let id_doctor = { _id: ObjectId(req.params.id_doctor) }
     const result = await Doctor.findOneAndDelete(id_doctor).exec().catch(err => err)

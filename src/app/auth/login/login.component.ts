@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
       this.token = data.token
       this.CookieService.set('token',this.token);
       console.log(this.token)
-      this.router.navigate(['/pharmacy/pharmacyProfile'])
+      this.router.navigate(['/doctor/alldoctors'])
     })
   }
 }

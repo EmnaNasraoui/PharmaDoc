@@ -11,6 +11,8 @@ import { TestComponent } from './test/test.component';
 import { PharmacyComponent } from './pharmacy/pharmacy.component';
 import { PharmacyProfileComponent } from './pharmacy/pharmacy-profile/pharmacy-profile.component';
 import { AllPharmacyComponent } from './pharmacy/all-pharmacy/all-pharmacy.component';
+import { TimetableComponent } from './doctor/timetable/timetable.component';
+import { DoctorprofileComponent } from './doctor/doctorprofile/doctorprofile.component';
 
 
 const routes: Routes = [
@@ -24,8 +26,10 @@ const routes: Routes = [
   },
   {
     path: 'doctor', component: DoctorComponent , children :[
-      {path :'alldoctors' , component: AlldoctorsComponent},
+      {path :'alldoctors', component: AlldoctorsComponent},
       {path :'singledoctor/:id', component :SingledoctorComponent},
+      {path :'timetable', component :TimetableComponent},
+      {path :'doctorprofile', component :DoctorprofileComponent},
       {path :'**', redirectTo:'alldoctors' }
     ]
   },

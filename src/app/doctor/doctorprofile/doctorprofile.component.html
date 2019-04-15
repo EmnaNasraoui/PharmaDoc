@@ -116,7 +116,11 @@
           <div class="profile-image" *ngFor="let result of results">
             <img src="http://localhost:3000/user/image/{{result.id_user.user_image}}" alt="Doctor Profile">
           </div>
-
+          <div class="form-group col-md-6">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin-left: 60px;">
+              Schedule
+            </button>
+          </div>
           <br>
           <h5 class="mt20"><b>Timming</b></h5>
           <table class="table table-striped">
@@ -346,7 +350,59 @@
         </div>
       </div>
   </section> -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Schedule</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form [formGroup]="DoctorForm">
+          <div class="modal-body">
+            <div class="form-group col-md-4">
+              <mat-form-field>
+                <mat-label>Select Day</mat-label>
+                <mat-select formControlName="day">
+                  <mat-option *ngFor="let Day of Days" [value]="Day.value">
+                    {{Day.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="form-group col-md-4">
+              <mat-form-field>
+                <mat-label>Select Time Of Opening</mat-label>
+                <mat-select formControlName="Time_Of_Opening">
+                  <mat-option *ngFor="let TimeOfOpening of TimeOfOpenings" [value]="TimeOfOpening.value">
+                    {{TimeOfOpening.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="form-group col-md-4">
+              <mat-form-field>
+                <mat-label>Select Time Of Closing</mat-label>
+                <mat-select formControlName="Time_Of_Closing">
+                  <mat-option *ngFor="let TimeOfClosing of TimeOfClosings" [value]="TimeOfClosing.value">
+                    {{TimeOfClosing.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
 
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" (click)="EditDocrtorProfile()" data-dismiss="modal" class="btn btn-primary">Save
+              changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
   <!-- Footer -->
   <footer>
     <!-- Container -->
