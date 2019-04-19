@@ -25,7 +25,7 @@ export class TimetableComponent implements OnInit {
 //     this.PatientID = jwt_decode(this.cookieService.get('token')).id.PatientID ;
 // console.log(this.PatientID) ;
 
-this.Pservice.getDoctorById(this.DoctorID).subscribe( (data) => {
+this.Pservice.getDoctorById(this.DoctorID).subscribe(async (data) => {
   console.log(data);
 
 this.doc = data ;
