@@ -58,6 +58,7 @@ import { AllPharmacyComponent } from './pharmacy/all-pharmacy/all-pharmacy.compo
 import { PatientComponent } from './patient/patient.component';
 import { PatientProfileComponent } from './patient/patient-profile/patient-profile.component';
 import { AllPatientComponent } from './patient/all-patient/all-patient.component';
+import { TimetableComponent } from './patient/timetable/timetable.component';
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 @NgModule({
@@ -76,7 +77,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     AllPharmacyComponent,
     PatientComponent,
     PatientProfileComponent,
-    AllPatientComponent
+    AllPatientComponent,
+    TimetableComponent
   ],
   imports: [
     BrowserModule,

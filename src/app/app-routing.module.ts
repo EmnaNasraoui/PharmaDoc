@@ -14,34 +14,36 @@ import { AllPharmacyComponent } from './pharmacy/all-pharmacy/all-pharmacy.compo
 import { PatientComponent } from './patient/patient.component';
 import { PatientProfileComponent } from './patient/patient-profile/patient-profile.component';
 import { AllPatientComponent } from './patient/all-patient/all-patient.component';
+import { TimetableComponent } from './patient/timetable/timetable.component';
 
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   {
     path: 'auth', component: AuthComponent , children :[
-      {path :'login' , component: LoginComponent},
-      {path :'signup', component : SignupComponent},
-      {path :'**', redirectTo:'login' }
+      {path : 'login' , component: LoginComponent},
+      {path : 'signup', component : SignupComponent},
+      {path : '**', redirectTo: 'login' }
     ]
   },
   {
     path: 'doctor', component: DoctorComponent , children :[
-      {path :'alldoctors' , component: AlldoctorsComponent},
-      {path :'singledoctor/:id', component :SingledoctorComponent},
-      {path :'**', redirectTo:'alldoctors' }
+      {path : 'alldoctors' , component: AlldoctorsComponent},
+      {path : 'singledoctor/:id', component : SingledoctorComponent},
+      {path : '**', redirectTo: 'alldoctors' }
     ]
   },
-  {path:'pharmacy', component : PharmacyComponent, children:[
-    {path :'pharmacyProfile', component : PharmacyProfileComponent},
+  {path: 'pharmacy', component : PharmacyComponent, children:[
+    {path : 'pharmacyProfile', component : PharmacyProfileComponent},
     {path : 'allPharmacy', component : AllPharmacyComponent}
   ]},
-  {path:'patient',component:PatientComponent,children:[
-    {path:'patientProfile',component:PatientProfileComponent},
-    {path:'allPatient',component:AllPatientComponent},
-    {path:'**',redirectTo:'allPatient'}
+  {path: 'patient', component: PatientComponent, children:[
+    // {path: 'patientProfile', component: PatientProfileComponent},
+    {path: 'all_Doc_To_Rdv', component: AllPatientComponent},
+    {path: 'timetable/:id' , component: TimetableComponent},
+    {path: '**', redirectTo: 'all_Doc_To_Rdv'}
   ]},
-  { path:'test',component: TestComponent}
+  { path: 'test', component: TestComponent}
 ];
 
 @NgModule({

@@ -14,18 +14,32 @@ router.post('/getRDV/:id_doctor/:id_patient', async (req,res)=>{
     let id_P = ObjectId(req.params.id_patient) ;
 let data = new RDV(req.body);
     data.Doctor_avail = id_D ;
-    data.Patient_sik = id_P ; 
+    data.Patient_sik = id_P ;
     const result = await RDV.create(data).catch(err => err)
-    console.log(result._id)        
+    console.log(result._id)
     let ID = result._id;
     const result1 = await Doctor.findByIdAndUpdate({_id:id_D},{ $push:{ All_Appointment:ObjectId(ID) }}).exec().catch(err => err)
     res.send(result)
 }) ;
 
-router.get('/get_list_doctor', async (req,res)=>{
-        const result = await user.find({user_role: 'doctor'}).populate({path:'id_doctor',select:['specialty']}).catch(err => err)
+router.get('/get_list_patient', async (req,res)=>{
+        const result = await user.find({user_role: 'patient'}).populate({path:'id_patient',select:['first_name','last_name']}).catch(err => err)
     res.send(result)
 }) ;
+
+
+router.get('/get_list_doctor', async (req,res)=>{
+  const result = await user.find({user_role: 'doctor'}).populate({path:'id_doctor',select:['specialty']}).catch(err => err)
+res.send(result)
+}) ;
+
+
+router.get('/get_doctor/:id_doctor', async (req,res)=>{
+  let Doctor_ID = ObjectId(req.params.id_doctor)  ;
+  const result = await user.find({id_doctor:Doctor_ID}).populate({path:'id_doctor',select:['specialty']}).catch(err => err)
+res.send(result)
+}) ;
+
 
 
 router.get('/get_list_pharmacy', async (req,res)=>{
@@ -51,7 +65,6 @@ res.send(result)
 router.get('/get_product/:id_product/:numb_product', async (req,res)=>{
     let id = ObjectId(req.params.id_product);
     let numb = req.params.numb_product
-    
     let result = await Products.findById({_id:id}).catch(err => err)
     if (numb<=result.Amount) {
         let  qunt = result.Amount-numb;
@@ -60,7 +73,7 @@ router.get('/get_product/:id_product/:numb_product', async (req,res)=>{
     else{
         result="amount not availabale"
     }
-    
+
 
 res.send(result)
 }) ;
