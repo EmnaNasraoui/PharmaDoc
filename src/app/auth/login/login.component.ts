@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
         this.authService.setToken(this.token);
         this.authService.ConnectedToken = this.authService.ConnectedUser();
         // this.authService.ConnectedToken['ownProducts'] = 0;
-        this.router.navigate(['/products/allProducts']);
+        this.router.navigate(['/doctor/doctorprofile']);
       }
       else {
         alert(data.lvl)

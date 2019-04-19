@@ -1,4 +1,5 @@
 <body>
+
     <!-- Nav -->
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
@@ -91,49 +92,175 @@
 
     <section class="gardient-bg-small" >
       <div class="container">
-        <h1 class="pull-left">Doctors</h1>
+        <h1 class="pull-left">Timetable</h1>
       <div class="pull-right">
         <ol class="breadcrumb">
           <li><a href="index.html">Home</a></li>
-          <li class="active">Doctors</li>
+          <li class="active">Timetable</li>
       </ol>
       </div>
       </div>
     </section>
 
-    <div class="blog-widget ">
-      <h3 class="margin">Search</h3>
-      <ul>
-        <input placeholder="search">
-
-        </ul>
+    <section id="timetable" class="default-bg">
+      <div class="container">
+      <!-- / College Timetable -->
+    <div class="tab">
+      <table border="0" cellpadding="0" cellspacing="0">
+        <tr class="days">
+            <th></th>
+            <th class="text-center">Monday</th>
+            <th class="text-center">Tuesday</th>
+            <th class="text-center">Wednesday</th>
+            <th class="text-center">Thursday</th>
+            <th class="text-center">Friday</th>
+            <th class="text-center">Saturday</th>
+        </tr>
+        <tr>
+            <td class="time">9.00</td>
+            <td class="timetable-col blue" rowspan="1">Cardiology <h6>Room: 11</h6> <h5>9.00 - 13.00</h5> <h6>Prof. John Doe</h6>
+            <div class="booking-tooltip">
+          <p>Book Appointment</p>
+          <button class="btn small" data-toggle="modal" data-target="#timeTableModal">+</button>
+            </div>
+            </td>
+            <td class="timetable-col red" rowspan="3">Dental <h6>Room: 12</h6> <h5>9.00 - 11.00</h5> <h6>Prof. Johnathan Doe</h6>
+            <div class="booking-tooltip">
+          <p>Book Appointment</p>
+          <button class="btn small" data-toggle="modal" data-target="#timeTableModal">+</button>
+            </div>
+            </td>
+            <td></td>
+            <td class="timetable-col green" rowspan="3">Dermatology <h6>Room: 14</h6> <h5>9.00 - 11.00</h5> <h6>Prof. Jon Doe</h6>
+            <div class="booking-tooltip">
+          <p>Book Appointment</p>
+          <button class="btn small" data-toggle="modal" data-target="#timeTableModal">+</button>
+            </div>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="time">10.00</td>
+            <td class="timetable-col red" rowspan="6">Dental <h6>Room: 12</h6> <h5>10.00 - 15.00</h5> <h6>Prof. Johnathan Doe</h6>
+            <div class="booking-tooltip">
+          <p>Book Appointment</p>
+          <button class="btn small" data-toggle="modal" data-target="#timeTableModal">+</button>
+            </div>
+            </td>
+            <td class="timetable-col green" rowspan="4">Dermatology <h6>Room: 14</h6> <h5>10.00 - 13.00</h5> <h6>Prof. Jon Doe</h6>
+            <div class="booking-tooltip">
+          <p>Book Appointment</p>
+          <button class="btn small" data-toggle="modal" data-target="#timeTableModal">+</button>
+            </div>
+            </td>
+            <td></td>
+          </tr>
+        <tr>
+            <td class="time">11.00</td>
+            <td class="timetable-col blue" rowspan="3">Cardiology <h6>Room: 11</h6> <h5>11.00 - 13.00</h5> <h6>Prof. John Doe</h6>
+            <div class="booking-tooltip">
+          <p>Book Appointment</p>
+          <button class="btn small" data-toggle="modal" data-target="#timeTableModal">+</button>
+            </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="time">12.00</td>
+            <td></td>
+        <td class="timetable-col red" rowspan="3">Dental <h6>Room: 12</h6> <h5>12.00 - 14.00</h5> <h6>Prof. Johnathan Doe</h6>
+            <div class="booking-tooltip">
+          <p>Book Appointment</p>
+          <button class="btn small" data-toggle="modal" data-target="#timeTableModal">+</button>
+            </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="time">13.00</td>
+            <td class="timetable-col green" rowspan="4">Dermatology <h6>Room: 14</h6> <h5>13.00 - 16.00</h5> <h6>Prof. Jon Doe</h6>
+            <div class="booking-tooltip">
+          <p>Book Appointment</p>
+          <button class="btn small" data-toggle="modal" data-target="#timeTableModal">+</button>
+            </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="time">14.00</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="time">15.00</td>
+            <td></td>
+            <td></td>
+            <td class="timetable-col blue" rowspan="5">Cardiology <h6>Room: 11</h6> <h5>15.00 - 17.00</h5> <h6>Prof. John Doe</h6>
+            <div class="booking-tooltip">
+          <p>Book Appointment</p>
+          <button class="btn small" data-toggle="modal" data-target="#timeTableModal">+</button>
+            </div>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="time">16.00</td>
+            <td class="timetable-col blue" rowspan="2">Cardiology <h6>Room: 11</h6> <h5>16.00 - 17.00</h5> <h6>Prof. John Doe</h6>
+            <div class="booking-tooltip">
+          <p>Book Appointment</p>
+          <button class="btn small" data-toggle="modal" data-target="#timeTableModal">+</button>
+            </div>
+            </td>
+            <td></td>
+            <td class="timetable-col blue" rowspan="2">Cardiology <h6>Room: 11</h6> <h5>16.00 - 17.00</h5> <h6>Prof. John Doe</h6>
+            <div class="booking-tooltip">
+          <p>Book Appointment</p>
+          <button class="btn small" data-toggle="modal" data-target="#timeTableModal">+</button>
+            </div>
+            </td>
+            <td class="timetable-col blue" rowspan="2">Cardiology <h6>Room: 11</h6> <h5>16.00 - 17.00</h5> <h6>Prof. John Doe</h6>
+            <div class="booking-tooltip">
+          <p>Book Appointment</p>
+          <button class="btn small" data-toggle="modal" data-target="#timeTableModal">+</button>
+            </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="time">17.00</td>
+            <td></td>
+            <td></td>
+        </tr>
+      </table>
     </div>
+    </div>
+  </section>
 
-  <section id="meet-doctors-wide" class="grey-bg">
-    <div class="container">
-      <div class="row">
-
-
-
-
-
-        <div class="col-md-4" *ngFor="let result of results">
-          <div class="doctor-box">
-          <img src="http://localhost:3000/user/image/{{result.id_user.user_image}}" alt="">
-          <div class="doctor-box-content">
-          <a routerLink="/doctor/singledoctor/{{result._id}}">
-            <!--  <button (click)="gotoDoctorbyid(result.id)">ok </button> -->
-              <h3>{{result.id_user.first_name}} {{result.id_user.last_name}}</h3>
-              <p>{{result.specialty}}</p>
-              <p>{{result._id}}</p>
-         </a>
-            <p class="doctor-box-info">{{result.id_user.adresse}}</p><br>
+  <!-- contactModal -->
+  <div class="modal fade" id="timeTableModal" tabindex="-1" role="dialog" aria-labelledby="Book">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title" id="myModalLabel">Book Appointment</h4>
+      </div>
+      <div class="modal-body">
+      <form action="#" id="contact">
+        <div class="row">
+          <div class="col-md-8">
+            <input id="name" type="text" class="form-control" placeholder="Name">
+            <input id="email" type="text" class="form-control" placeholder="Email">
+            <textarea id="message" placeholder="Message" class="form-control" ></textarea>
+            <input id="contactFormBtn" type="submit" class="btn blue medium" value="Submit">
+            <button type="button" class="btn medium" data-dismiss="modal" aria-label="Close">Cancel</button>
           </div>
+          <div class="col-md-4">
+            <img src="img/doctor-small.png" alt="Doctor Profile" class="hidden-xs hidden-sm">
           </div>
         </div>
+      </form>
       </div>
-      </div>
-  </section>
+    </div>
+    </div>
+  </div>
+
 
   <!-- Footer -->
   <footer>

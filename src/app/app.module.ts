@@ -56,6 +56,8 @@ import { TestComponent } from './test/test.component';
 import { PharmacyComponent } from './pharmacy/pharmacy.component';
 import { PharmacyProfileComponent } from './pharmacy/pharmacy-profile/pharmacy-profile.component';
 import { AllPharmacyComponent } from './pharmacy/all-pharmacy/all-pharmacy.component';
+import { TimetableComponent } from './doctor/timetable/timetable.component';
+import { DoctorprofileComponent } from './doctor/doctorprofile/doctorprofile.component';
 import { ViewProfileComponent } from './pharmacy/view-profile/view-profile.component';
 import { ProductsComponent } from './products/products.component';
 import {orderByPrice} from './products/product/orderByPrice.pipe'
@@ -67,6 +69,7 @@ import { FilterForProductsPipe } from './filter-for-products.pipe';
 import { PatientComponent } from './patient/patient.component';
 import { PatientProfileComponent } from './patient/patient-profile/patient-profile.component';
 import { AllPatientComponent } from './patient/all-patient/all-patient.component';
+import { FilterdoctorsPipe } from './filterdoctors.pipe';
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 @NgModule({
@@ -83,6 +86,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     PharmacyComponent,
     PharmacyProfileComponent,
     AllPharmacyComponent,
+    TimetableComponent,
+    DoctorprofileComponent,
     ViewProfileComponent,
     ProductsComponent,
     orderByPrice,
@@ -92,7 +97,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     FilterForProductsPipe,
     PatientComponent,
     PatientProfileComponent,
-    AllPatientComponent
+    AllPatientComponent,
+    FilterdoctorsPipe
   ],
   imports: [
     BrowserModule,

@@ -1,23 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { DoctorService } from 'src/app/doctor.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
-import * as jwt_decode from 'jwt-decode'
-import { CookieService } from 'ngx-cookie-service';
-
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
+import { DoctorService } from 'src/app/doctor.service';
 export interface Roles {
   value: string;
   viewValue: string;
 }
 @Component({
-  selector: 'app-singledoctor',
-  templateUrl: './singledoctor.component.html',
-  styleUrls: ['./singledoctor.component.css']
+  selector: 'app-doctorprofile',
+  templateUrl: './doctorprofile.component.html',
+  styleUrls: ['./doctorprofile.component.css']
 })
-export class SingledoctorComponent implements OnInit {
-  ID: any;
-  results;
+export class DoctorprofileComponent implements OnInit {
   Days: Roles[] = [
     { value: 'monday', viewValue: 'Monday' },
     { value: 'tuesday', viewValue: ' Tuesday' },
@@ -79,12 +74,11 @@ export class SingledoctorComponent implements OnInit {
     { value: '24', viewValue: ' 24' },
 
   ];
-
+  ID: any;
+  results;
   DoctorForm: FormGroup;
-  id_Doctor: any;
-
-constructor( private apiService: DoctorService, private route: ActivatedRoute, private router: Router, private cookieService: CookieService)
-{
+  id_Doctor;
+  constructor(private apiService: DoctorService, private route: ActivatedRoute, private router: Router, private authService: AuthService) {
     this.DoctorForm = new FormGroup({
       day: new FormControl(''),
       Time_Of_Opening: new FormControl(''),
@@ -93,18 +87,23 @@ constructor( private apiService: DoctorService, private route: ActivatedRoute, p
   }
 
   ngOnInit() {
-    this.ID = this.route.snapshot.paramMap.get('id');
-    this.apiService.getDoctorById(this.ID).subscribe((data: any) => {
+    this.id_Doctor = this.authService.ConnectedToken.id_doctor;
+    this.apiService.getDoctorById(this.id_Doctor).subscribe((data: any) => {
       console.log(data);
+      console.log(this.id_Doctor);
       this.results = [data];
     });
+  }
 
+  EditDocrtorProfile() {
+    this.id_Doctor = this.authService.ConnectedToken.id_doctor;
+    this.apiService.AddDoctorSchedule(this.id_Doctor, this.DoctorForm.value).subscribe((data: any) => {
+      console.log(data);
+      this.ngOnInit();
+    });
   }
 
   goToTimeTable() {
     this.router.navigate(['/doctor/timetable']);
   }
-
-
-
 }
