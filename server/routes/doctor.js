@@ -7,7 +7,7 @@ var Prescription = require('../models/prescription');
 var Partnership = require('../models/partnership');
 
 let Mongoose = require('mongoose');
-let ObjectId = Mongoose.Types.ObjectId ; 
+let ObjectId = Mongoose.Types.ObjectId ;
 
 
 
@@ -33,7 +33,7 @@ router.post('/deleteaDoctor/:id_doctor', async (req, res) => {
 
 router.get('/getDoctor/:id_doctor', async (req, res) => {
     let id_doctor = { _id: ObjectId(req.params.id_doctor) }
-    const result = await Doctor.findOne(id_doctor).populate({ path:'id_user', select: ['first_name', 'last_name','adresse','user_image','_id']}).exec().catch(err => err)
+    const result = await Doctor.findOne(id_doctor).populate({ path:'id_user', select: ['first_name', 'last_name','adresse','user_image','_id','Schedule']}).exec().catch(err => err)
     console.log(result);
     res.send(result)
 })
@@ -98,7 +98,7 @@ router.post('/write_prescription/:id_doctor/:id_patient', async (req ,res) => {
 let Data=new Prescription(req.body)
 Data.Doctor_wr=id_doc;
 Data.Patient_ex=id_Pa;
-   
+
     const result = await Prescription.create(Data).catch(err => err)
     console.log(result._id)
     const result1 = await Prescription.find({_id:result._id}).populate([{path:'Doctor_wr',select:['first_name','last_name']},{path:'Patient_ex',select:['first_name','last_name']}]).exec().catch(err => err)

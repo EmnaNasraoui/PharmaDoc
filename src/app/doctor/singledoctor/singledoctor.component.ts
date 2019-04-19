@@ -83,16 +83,17 @@ export class SingledoctorComponent implements OnInit {
   DoctorForm: FormGroup;
   id_Doctor: any;
 
-  constructor(private apiService: DoctorService, private route: ActivatedRoute , private router: Router,  private cookieService: CookieService ) {
-    this.DoctorForm = new FormGroup({ 
+constructor( private apiService: DoctorService, private route: ActivatedRoute, private router: Router, private cookieService: CookieService)
+{
+    this.DoctorForm = new FormGroup({
       day: new FormControl(''),
       Time_Of_Opening: new FormControl(''),
       Time_Of_Closing: new FormControl(''),
-    })
+    });
   }
 
   ngOnInit() {
-    this.ID = this.route.snapshot.paramMap.get('id')
+    this.ID = this.route.snapshot.paramMap.get('id');
     this.apiService.getDoctorById(this.ID).subscribe((data: any) => {
       console.log(data);
       this.results = [data];
@@ -100,18 +101,10 @@ export class SingledoctorComponent implements OnInit {
 
   }
 
-  goToTimeTable()
-  {
+  goToTimeTable() {
     this.router.navigate(['/doctor/timetable']);
   }
 
-  EditDocrtorProfile()
-  {
-    this.id_Doctor = jwt_decode(this.cookieService.get('token')).id.id_doctor
-    this.apiService.AddDoctorSchedule(this.id_Doctor,this.DoctorForm.value).subscribe((data: any) => {
-      console.log(data);
-      this.ngOnInit()
-    })
-  }
+
 
 }

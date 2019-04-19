@@ -101,25 +101,32 @@
       </div>
     </section>
 
+    <div class="blog-widget ">
+      <h3 class="margin">Search</h3>
+      <ul>
+        <input placeholder="search">
+
+        </ul>
+    </div>
 
   <section id="meet-doctors-wide" class="grey-bg">
     <div class="container">
       <div class="row">
-        
-       
-        
 
-      
+
+
+
+
         <div class="col-md-4" *ngFor="let result of results">
           <div class="doctor-box">
           <img src="http://localhost:3000/user/image/{{result.id_user.user_image}}" alt="">
           <div class="doctor-box-content">
-          <a routerLink="/doctor/singledoctor/{{result._id}}"> 
+          <a routerLink="/doctor/singledoctor/{{result._id}}">
             <!--  <button (click)="gotoDoctorbyid(result.id)">ok </button> -->
               <h3>{{result.id_user.first_name}} {{result.id_user.last_name}}</h3>
               <p>{{result.specialty}}</p>
               <p>{{result._id}}</p>
-         </a> 
+         </a>
             <p class="doctor-box-info">{{result.id_user.adresse}}</p><br>
           </div>
           </div>
