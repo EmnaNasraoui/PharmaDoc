@@ -1,5 +1,5 @@
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
- 
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -58,6 +58,18 @@ import { PharmacyProfileComponent } from './pharmacy/pharmacy-profile/pharmacy-p
 import { AllPharmacyComponent } from './pharmacy/all-pharmacy/all-pharmacy.component';
 import { TimetableComponent } from './doctor/timetable/timetable.component';
 import { DoctorprofileComponent } from './doctor/doctorprofile/doctorprofile.component';
+import { ViewProfileComponent } from './pharmacy/view-profile/view-profile.component';
+import { ProductsComponent } from './products/products.component';
+import {orderByPrice} from './products/product/orderByPrice.pipe'
+import { FilterPipeModule } from 'ngx-filter-pipe';
+import { AllProductsComponent } from './products/all-products/all-products.component';
+import { ProductComponent } from './products/product/product.component';
+import { CartComponent } from './products/cart/cart.component';
+import { FilterForProductsPipe } from './filter-for-products.pipe';
+import { PatientComponent } from './patient/patient.component';
+import { PatientProfileComponent } from './patient/patient-profile/patient-profile.component';
+import { AllPatientComponent } from './patient/all-patient/all-patient.component';
+import { FilterdoctorsPipe } from './filterdoctors.pipe';
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 @NgModule({
@@ -75,7 +87,18 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     PharmacyProfileComponent,
     AllPharmacyComponent,
     TimetableComponent,
-    DoctorprofileComponent
+    DoctorprofileComponent,
+    ViewProfileComponent,
+    ProductsComponent,
+    orderByPrice,
+    AllProductsComponent,
+    ProductComponent,
+    CartComponent,
+    FilterForProductsPipe,
+    PatientComponent,
+    PatientProfileComponent,
+    AllPatientComponent,
+    FilterdoctorsPipe
   ],
   imports: [
     BrowserModule,
@@ -118,8 +141,9 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     BrowserAnimationsModule,
       FormsModule,
       ReactiveFormsModule,
-      HttpClientModule, 
-         SocketIoModule.forRoot(config)
+      HttpClientModule,
+         SocketIoModule.forRoot(config),
+         FilterPipeModule
     ],
   exports: [ ],
   providers: [CookieService],

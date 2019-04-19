@@ -1,0 +1,14 @@
+.scheduleButton{
+    padding: 10px 45px;
+}
+.productButton{
+        padding: 9px 35px;
+}
+.imageSize{
+    height: 160px;
+    width: 174px;
+    margin-top: 19px;
+}
+.btn-info{
+    padding: 1px 11px;
+}

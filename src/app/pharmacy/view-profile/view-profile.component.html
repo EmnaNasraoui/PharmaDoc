@@ -1,0 +1,68 @@
+<section class="gardient-bg-small">
+  <div class="container">
+    <h1 class="pull-left">Pharmacy Profile</h1>
+    <div class="pull-right">
+      <ol class="breadcrumb">
+        <li><a href="index.html">Home</a></li>
+        <li class="active">Pharmacy Profile</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="doctor-profile" class="default-bg" *ngFor='let result of results'>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-image">
+          <img src="http://localhost:3000/user/image/{{result.user_image}}" alt="Doctor Profile">
+        </div>
+        <h5 class="mt20"><b>Schedule</b></h5>
+        <table class="table table-striped" *ngFor=" let Schedules of result.id_pharmacy.Schedule ">
+          <tr>
+            <td>{{Schedules.day}}</td>
+            <td>{{Schedules.Time_Of_Opening}}h – {{Schedules.Time_Of_Closing}}h</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-md-8">
+        <h3 class="text-blue">{{result.id_pharmacy.Pharmacy_name}}</h3>
+        <p>{{result.user_role}}</p>
+        <p class="mt20">Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which
+          looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or
+          non-characteristic words etc.</p><br>
+        <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
+          recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><br>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="meet-doctors-wide" class="grey-bg">
+  <div class="container">
+    <div class="section-title">
+      <h2 class="animated" data-animation="bounceInLeft">Our Products</h2>
+    </div>
+    <div class="row">
+      <div class="col-md-4" *ngFor='let product of products; let i = index'>
+        <div class="doctor-box">
+          <img src="http://localhost:3000/user/image/{{product.Product_image}}" alt="">
+          <div class="doctor-box-content" style="height: 110%">
+            <a>
+              <h3>
+                {{product.Name}}
+              </h3>
+              <p>{{product.Product_Pharmacy.Pharmacy_name}}</p>
+              <p>Category : {{product.Product_Category}}</p>
+              <p>Price : {{product.Price}}dt</p>
+              <p>Amount : {{product.Amount}}</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ./end Scroll to top -->

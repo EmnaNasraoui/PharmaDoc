@@ -13,15 +13,24 @@ import { PharmacyProfileComponent } from './pharmacy/pharmacy-profile/pharmacy-p
 import { AllPharmacyComponent } from './pharmacy/all-pharmacy/all-pharmacy.component';
 import { TimetableComponent } from './doctor/timetable/timetable.component';
 import { DoctorprofileComponent } from './doctor/doctorprofile/doctorprofile.component';
+import { ViewProfileComponent } from './pharmacy/view-profile/view-profile.component';
+import { ProductsComponent } from './products/products.component';
+import { AllProductsComponent } from './products/all-products/all-products.component';
+import { ProductComponent } from './products/product/product.component';
+import { CartComponent } from './products/cart/cart.component';
+import { PatientComponent } from './patient/patient.component';
+import { PatientProfileComponent } from './patient/patient-profile/patient-profile.component';
+import { AllPatientComponent } from './patient/all-patient/all-patient.component';
 
 
 const routes: Routes = [
+  { path: '',pathMatch:'full', redirectTo: 'auth' },
   { path: 'home', component: HomeComponent },
   {
-    path: 'auth', component: AuthComponent , children :[
-      {path :'login' , component: LoginComponent},
-      {path :'signup', component : SignupComponent},
-      {path :'**', redirectTo:'login' }
+    path: 'auth', component: AuthComponent , children : [
+      {path : 'login' , component: LoginComponent},
+      {path : 'signup', component : SignupComponent},
+      {path : '**', redirectTo: 'login' }
     ]
   },
   {
@@ -30,12 +39,27 @@ const routes: Routes = [
       {path :'singledoctor/:id', component :SingledoctorComponent},
       {path :'timetable', component :TimetableComponent},
       {path :'doctorprofile', component :DoctorprofileComponent},
-      {path :'**', redirectTo:'alldoctors' }
+      {path :'**', redirectTo:'alldoctors' },
+      {path : 'alldoctors' , component: AlldoctorsComponent},
+      {path : 'singledoctor/:id', component : SingledoctorComponent},
+      {path : '**', redirectTo: 'alldoctors' }
     ]
   },
-  {path:'pharmacy', component : PharmacyComponent, children:[
-    {path :'pharmacyProfile', component : PharmacyProfileComponent},
-    {path : 'allPharmacy', component : AllPharmacyComponent}
+  {path : 'pharmacy', component : PharmacyComponent, children:[
+    {path : 'pharmacyProfile', component : PharmacyProfileComponent},
+    {path : 'allPharmacy', component : AllPharmacyComponent},
+    {path : 'viewProfile/:id', component : ViewProfileComponent}
+  ]},
+  { path : 'test', component: TestComponent},
+  { path : 'products', component : ProductsComponent, children:[
+    {path : 'allProducts', component : AllProductsComponent},
+    {path : 'product/:id', component : ProductComponent},
+    { path : 'cart', component : CartComponent}
+  ]},
+  {path:'patient',component:PatientComponent,children:[
+    {path:'patientProfile',component:PatientProfileComponent},
+    {path:'allPatient',component:AllPatientComponent},
+    {path:'**',redirectTo:'allPatient'}
   ]},
   { path:'test',component: TestComponent}
 ];

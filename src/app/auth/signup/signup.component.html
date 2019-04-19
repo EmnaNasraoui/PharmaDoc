@@ -202,6 +202,10 @@
               <label>Specialty</label>
               <input type="text" class="form-control padding" placeholder="" formControlName="specialty">
             </div>
+            <div class="form-group col-md-6" *ngIf="UserForm.value.user_role == 'pharmacy'">
+              <label>Pharmacy name</label>
+              <input type="text" class="form-control padding" placeholder="" formControlName="Pharmacy_name">
+            </div>
             <div class="form-group col-md-6">
               <label>Email</label>
               <input type="email" class="form-control padding" placeholder="" formControlName="email">

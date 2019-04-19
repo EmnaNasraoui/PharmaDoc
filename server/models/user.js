@@ -40,7 +40,9 @@ var UserSchema = new mongoose.Schema({
 
   id_pharmacy: { type: mongoose.Schema.Types.ObjectId, ref: 'Pharmacy' },
 
-  id_patient: { type: mongoose.Schema.Types.ObjectId, ref: 'Patient' }
+  id_patient: { type: mongoose.Schema.Types.ObjectId, ref: 'Patient' },
+
+  id_Cart: { type: mongoose.Schema.Types.ObjectId, ref: 'MyCart' }
 })
 
 UserSchema.pre('save', function () {
