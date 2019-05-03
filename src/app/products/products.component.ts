@@ -6,16 +6,27 @@ import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css','cart.scss']
+  styleUrls: ['./products.component.css', 'cart.scss']
 })
 export class ProductsComponent implements OnInit {
   id_product: any;
   products: any;
-  constructor(private pharmacyService: PharmacyService,public authService: AuthService) { }
+  produits: any;
+  constructor(private pharmacyService: PharmacyService, public authService: AuthService) { }
 
   ngOnInit() {
     this.products = this.pharmacyService.CartProductNumber;
-   console.log('this.products', this.products)
-   }
+    this.produits = this.authService.ConnectedToken.data;
+    console.log('produit', this.produits);
+   console.log('this.products', this.products);
+   console.log('price', this.authService.ConnectedToken['price']);
 
+      let total = 0;
+      for (let i = 0; i < this.produits.length; i++) {
+        const product = this.produits[i];
+        total += (product.productName.Price * product.Quantity);
+      }
+      console.log(total);
+      return total;
+    }
 }

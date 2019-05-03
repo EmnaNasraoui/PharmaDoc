@@ -17,44 +17,48 @@
         <div class="blog-widget ">
           <h3 class="margin">Search</h3>
           <ul>
-            <input placeholder="search"  [formControl]="productFilter">
-              <li *ngFor="let item of products | filterForProducts:{ Name: filterText, Price: filterText } : false">{{ item.value }} - {{ item.Name }} - {{ item.Price }}</li>
-            </ul>
+            <input placeholder="search" class="form-control">
+          </ul>
         </div>
-        <div class="form-group col-md-6">
-          <mat-form-field>
-            <mat-label>Select Product Category</mat-label>
-            <mat-select multiple>
-              <mat-option *ngFor="let Product_Category of Product_Categories" [value]="Product_Category.value">
-                {{Product_Category.viewValue }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="col-md-9">
+        <div class="col-md-6">
 
-      <div class="col-md-4" *ngFor="let product of products | orderByPrice ">
-        <div class="doctor-box">
-          <img src="http://localhost:3000/user/image/{{product.Product_image}}" alt="...">
-          <div class="doctor-box-content" style="height: 114%">
-            <a routerLink="/products/product/{{product._id}}">
-              <h3>
-                {{product.Name}}
-              </h3>
-              <p>{{product.Product_Pharmacy.Pharmacy_name}}</p>
-              <p>Category : {{product.Product_Category}}</p>
-              <p>Price : {{product.Price}}dt</p>
-              <p>Amount : {{product.Amount}}</p>
-              <p>Address : {{product.Product_Pharmacy.id_user.adresse}}</p>
-            </a>
-            <div class="doctor-social">
-              <button type="button" (click)="AddToCart(product._id)" class="btn btn-info">Add To MyCart</button>
+            <mat-checkbox (click)="addToFilter('Drug')">Drug</mat-checkbox>
+            <mat-checkbox (click)="addToFilter('sirop')">Sirop</mat-checkbox>
+            <mat-checkbox (click)="addToFilter('injectables')">Injectables</mat-checkbox>
+            <mat-checkbox (click)="addToFilter('Poudre')">Poudre</mat-checkbox>
+            <mat-checkbox (click)="addToFilter('dermiques')">Dermiques</mat-checkbox>
+            <mat-checkbox (click)="addToFilter('Bio Product')">Bio Product</mat-checkbox>
+            <mat-checkbox (click)="addToFilter('Aesthetic Product')">Aesthetic Product</mat-checkbox>
+            <mat-checkbox (click)="addToFilter('Accessory')">Accessory</mat-checkbox>
+          </div>
+
+          <!--     <p>Min value: <input type="number" step="{{options.step}}" [(ngModel)]="minValue"></p>
+        <p>Max value: <input type="number" step="{{options.step}}" [(ngModel)]="maxValue"></p> -->
+          <ng5-slider  (valueChange)="valueChange($event)" [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
+        </div>
+        <div class="col-md-9">
+
+          <div class="col-md-4" *ngFor="let product of filteredProducts | orderByPrice | checkBoxFiltre: searchJson">
+            <div class="doctor-box">
+              <img src="http://localhost:3000/user/image/{{product.Product_image}}" alt="...">
+              <div class="doctor-box-content" style="height: 114%">
+                <a routerLink="/products/product/{{product._id}}">
+                  <h3>
+                    {{product.Name}}
+                  </h3>
+                  <p>{{product.Product_Pharmacy.Pharmacy_name}}</p>
+                  <p>Category : {{product.Product_Category}}</p>
+                  <p>Price : {{product.Price}} dt</p>
+                  <p>Amount : {{product.Amount}}</p>
+                  <p>Address : {{product.Product_Pharmacy.id_user.adresse}}</p>
+                </a>
+                <div class="doctor-social">
+                  <button type="button" (click)="AddToCart(product._id)" class="btn btn-info">Add To MyCart</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      </div>
     </div>
-  </div>
 </section>

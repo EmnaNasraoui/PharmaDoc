@@ -19,6 +19,7 @@ import { CartComponent } from './products/cart/cart.component';
 import { PatientComponent } from './patient/patient.component';
 import { PatientProfileComponent } from './patient/patient-profile/patient-profile.component';
 import { AllPatientComponent } from './patient/all-patient/all-patient.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 const routes: Routes = [
@@ -49,12 +50,13 @@ const routes: Routes = [
     {path : 'product/:id', component : ProductComponent},
     { path : 'cart', component : CartComponent}
   ]},
-  {path:'patient',component:PatientComponent,children:[
-    {path:'patientProfile',component:PatientProfileComponent},
-    {path:'allPatient',component:AllPatientComponent},
-    {path:'**',redirectTo:'allPatient'}
+  {path: 'patient', component: PatientComponent, children: [
+    {path: 'patientProfile', component: PatientProfileComponent},
+    {path: 'allPatient', component: AllPatientComponent},
+    {path: '**', redirectTo: 'allPatient'}
   ]},
-  { path:'test',component: TestComponent}
+  { path: 'test', component: TestComponent},
+  { path: 'chat', component: ChatComponent}
 ];
 
 @NgModule({

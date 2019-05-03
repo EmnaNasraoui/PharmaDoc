@@ -3,6 +3,7 @@ import { PharmacyService } from 'src/app/pharmacy.service';
 import * as jwt_decode from 'jwt-decode'
 import { CookieService } from 'ngx-cookie-service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/auth.service';
 export interface Roles {
   value: string;
   viewValue: string;
@@ -116,7 +117,7 @@ export class PharmacyProfileComponent implements OnInit {
 
     }
   }
-  constructor(private pharmacyService: PharmacyService, private cookieService: CookieService) {
+  constructor(private pharmacyService: PharmacyService, private cookieService: CookieService, private authService: AuthService) {
     this.PharmacyForm = new FormGroup({
       day: new FormControl(''),
       Time_Of_Opening: new FormControl(''),
@@ -136,7 +137,7 @@ export class PharmacyProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.id_pharmacy = jwt_decode(this.cookieService.get('token')).id.id_pharmacy
+    this.id_pharmacy = this.authService.ConnectedToken.id_pharmacy;
     this.pharmacyService.GetPharmacyById(this.id_pharmacy).subscribe((data: any) => {
       this.results = [data];
     })
@@ -146,7 +147,7 @@ export class PharmacyProfileComponent implements OnInit {
     })
   }
   EditPharmacyProfile() {
-    this.id_pharmacy = jwt_decode(this.cookieService.get('token')).id.id_pharmacy
+    this.id_pharmacy = this.authService.ConnectedToken.id_pharmacy;
     this.pharmacyService.EditPharmacyById(this.id_pharmacy, this.PharmacyForm.value).subscribe((data: any) => {
       console.log(data);
       this.ngOnInit()
@@ -157,7 +158,7 @@ export class PharmacyProfileComponent implements OnInit {
     this.selectedImage = event.target.files[0]
   }
   AddProduct(){
-    this.id_pharmacy = jwt_decode(this.cookieService.get('token')).id.id_pharmacy;
+    this.id_pharmacy = this.authService.ConnectedToken.id_pharmacy;
    const formData = new FormData();
    formData.append('Name',this.ProductForm.value.Name);
    formData.append('Price',this.ProductForm.value.Price);
