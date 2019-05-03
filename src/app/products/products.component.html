@@ -54,38 +54,61 @@
             </li>
           </ul>
         </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-            aria-expanded="false">Departments</a>
-          <ul class="dropdown-menu dropdown-menu-left">
-            <li><a href="departments.html">Departments</a></li>
-            <li><a href="department-single.html">Department Single</a></li>
-          </ul>
-        </li>
+        <!--      <li class="dropdown">
+          <a routerLink="/pharmacy/pharmacyProfile" role="button" aria-haspopup="true" aria-expanded="false">Pharmacy Profile</a>
+        </li> -->
         <li>
           <a href="timetable.html">Timetable</a>
         </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-            aria-expanded="false">Feautures</a>
-          <ul class="dropdown-menu dropdown-menu-left">
-            <li><a href="buttons.html">Buttons</a></li>
-            <li><a href="tabs.html">Tabs</a></li>
-            <li><a href="typography.html">Typography</a></li>
-            <li><a href="icons.html">Icons</a></li>
-            <li><a href="grid.html">Grids</a></li>
-            <li><a href="alerts.html">Notifications</a></li>
-            <li><a href="404.html">404</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a routerLink="/products/cart" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-            aria-expanded="false"><img style="margin-top: -7px" src="./../../assets/img/shopping-cart-32.png">{{authService.ConnectedToken.ownProducts}}</a>
-          <ul class="dropdown-menu dropdown-menu-rigth">
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="blog-single.html">Blog Single</a></li>
-          </ul>
-        </li>
+        <div class="dropdown cart-dropdown">
+          <a routerLink="/products/cart" class="dropdown-toggle" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" data-display="static">
+            <span class="dropdown-cart-icon">
+              <img style="margin-top: -7px" src="./../../assets/img/shopping-cart-32.png">
+            </span>
+            <span class="dropdown-cart-text">{{authService.ConnectedToken.ownProducts}}</span>
+          </a>
+          <li class="dropdown">
+          </li>
+          <div class="dropdown-menu">
+            <div class="dropdownmenu-wrapper">
+              <div class="dropdown-cart-products" *ngFor='let prodtuits of authService.ConnectedToken.data; let i= index'>
+                <div class="product">
+                  <figure class="product-image-container">
+                    <a class="product-image">
+                      <img src="http://localhost:3000/user/image/{{prodtuits.productName.Product_image}}" alt="product">
+                    </a>
+                  </figure>
+
+                  <div class="product-details">
+                    <h4 class="product-title">
+                      <a href="product.html">{{prodtuits.productName.Name}}</a>
+                    </h4>
+
+                    <span class="cart-product-info">
+                      <span class="cart-product-qty">{{prodtuits.Quantity}}</span>
+                      x {{prodtuits.productName.Price}}
+                    </span>
+                  </div><!-- End .product-details -->
+
+                  <a href="#" class="btn-remove" title="Remove Product"><i class="icon-cancel"></i></a>
+                </div><!-- End .product -->
+              </div><!-- End .cart-product -->
+
+              <div class="dropdown-cart-total">
+                <span>SubTotal:</span>
+
+                <span class="cart-total-price"></span>
+              </div><!-- End .dropdown-cart-total -->
+
+              <div class="dropdown-cart-action">
+                <a routerLink="/products/cart" class="btn btn-primary">View Cart</a>
+                <!-- <a href="checkout-shipping.html" class="btn btn-outline-primary">Checkout</a> -->
+              </div><!-- End .dropdown-cart-total -->
+            </div><!-- End .dropdownmenu-wrapper -->
+          </div><!-- End .dropdown-menu -->
+        </div><!-- End .dropdown -->
+
       </ul> <!-- END / NAVBAR RIGHT -->
     </div>
   </div> <!-- END CONTAINER -->

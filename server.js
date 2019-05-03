@@ -2,23 +2,24 @@ let express = require('express')
 let cors = require('cors')
 let app = express()
 const auth = require('./server/routes/auth')
-const path = require("path");
-
+const socketIO = require('socket.io');
+const path = require('path');
 const pharmacy = require('./server/routes/Pharmacy')
 const Doctor = require('./server/routes/doctor')
 const chatBox = require('./server/routes/chatBox')
 const patient = require('./server/routes/patient')
 const multer = require("multer");
-
+const passport = require('./server/passport/passport')
 app.use(express.json())
 app.use(cors())
+var http = require('http');
 
 
-const server = require('http').Server(app);
+const server = http.createServer(app);
+const io = socketIO(server);
 
-const io = require('socket.io')(server, { origins: '*:*' });
-
-app.io = io;
+app.set('io', io);
+app.use(express.static(path.join(__dirname, 'dist')));
 
 let mongoose = require('mongoose')
 let mongoDB = 'mongodb://' + process.env.DB_HOST + ':' + process.env.DB_PORT + '/' + process.env.DB_NAME

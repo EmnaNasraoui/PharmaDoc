@@ -19,7 +19,7 @@
       </div>
       <div class="col-md-8">
         <h3 class="text-blue">{{product.Name}}</h3>
-        <p>{{product.Product_Pharmacy.Pharmacy_name}}</p>
+       <a routerLink="/pharmacy/viewProfile/{{product.Product_Pharmacy._id}}"> <p> Pharmacy Name : {{product.Product_Pharmacy.Pharmacy_name}}</p></a>
         <p>Category : {{product.Product_Category}}</p>
         <p>Price : {{product.Price}}dt</p>
         <p>Amount : {{product.Amount}}</p>

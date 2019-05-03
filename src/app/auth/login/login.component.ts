@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
         // this.authService.ConnectedToken['ownProducts'] = 0;
         this.router.navigate(['/doctor/doctorprofile']);
       }
-      else {
+      else{
         alert(data.lvl)
       }
     })
