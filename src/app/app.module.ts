@@ -56,6 +56,8 @@ import { TestComponent } from './test/test.component';
 import { PharmacyComponent } from './pharmacy/pharmacy.component';
 import { PharmacyProfileComponent } from './pharmacy/pharmacy-profile/pharmacy-profile.component';
 import { AllPharmacyComponent } from './pharmacy/all-pharmacy/all-pharmacy.component';
+import { TimetableComponent } from './doctor/timetable/timetable.component';
+import { DoctorprofileComponent } from './doctor/doctorprofile/doctorprofile.component';
 import { ViewProfileComponent } from './pharmacy/view-profile/view-profile.component';
 import { ProductsComponent } from './products/products.component';
 import {orderByPrice} from './products/product/orderByPrice.pipe'
@@ -67,10 +69,14 @@ import { FilterForProductsPipe } from './filter-for-products.pipe';
 import { PatientComponent } from './patient/patient.component';
 import { PatientProfileComponent } from './patient/patient-profile/patient-profile.component';
 import { AllPatientComponent } from './patient/all-patient/all-patient.component';
+<<<<<<< HEAD
 import { CheckBoxFiltrePipe } from './check-box-filtre.pipe';
 import { Ng5SliderModule } from 'ng5-slider';
 import { FiltrePricePipe } from './filtre-price.pipe';
 import { ChatComponent } from './chat/chat.component';
+=======
+import { FilterdoctorsPipe } from './filterdoctors.pipe';
+>>>>>>> 2c0fb83e996fbf560efd691e43c47bb38837fc17
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 @NgModule({
@@ -87,6 +93,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     PharmacyComponent,
     PharmacyProfileComponent,
     AllPharmacyComponent,
+    TimetableComponent,
+    DoctorprofileComponent,
     ViewProfileComponent,
     ProductsComponent,
     orderByPrice,
@@ -97,9 +105,13 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     PatientComponent,
     PatientProfileComponent,
     AllPatientComponent,
+<<<<<<< HEAD
     CheckBoxFiltrePipe,
     FiltrePricePipe,
     ChatComponent
+=======
+    FilterdoctorsPipe
+>>>>>>> 2c0fb83e996fbf560efd691e43c47bb38837fc17
   ],
   imports: [
     BrowserModule,

@@ -113,13 +113,17 @@
     <div class="container">
       <div class="row">
         <div class="col-md-4" *ngFor="let result of results">
-          <div class="profile-image">
+          <div class="profile-image" >
             <img src="http://localhost:3000/user/image/{{result.id_user.user_image}}" alt="Doctor Profile">
           </div>
-
-          <br>
+          <div class="form-group col-md-6">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin-left: 60px;margin-top: 12px">
+              Schedule
+            </button>
+          </div>
+          <br><br>
           <h5 class="mt20"><b>Timming</b></h5>
-          <table class="table table-striped" *ngFor=" let Schedules of result.Schedule ">
+         <table class="table table-striped" *ngFor=" let Schedules of result.Schedule ">
             <tr>
               <td>{{Schedules.day}}</td>
               <td>{{Schedules.Time_Of_Opening}}h – {{Schedules.Time_Of_Closing}}h</td>
@@ -127,6 +131,8 @@
 
           </table>
         </div>
+        <a class="btn border medium" (click)= "goToTimeTable()">Button</a>
+
         <div class="col-md-8" *ngFor="let result of results">
           <h3 class="text-blue">Dr. {{result.id_user.first_name}} {{result.id_user.last_name}}</h3>
           <p>{{result.specialty}}</p>
@@ -179,14 +185,6 @@
                   commodo consequat.</div>
               </div>
             </div> -->
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" (click)="goToTimeTable()"><i
-                      class="fa fa-envelope-o" aria-hidden="true"></i>Take an Appointment</a>
-                </h4>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -306,7 +304,59 @@
         </div>
       </div>
   </section> -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Schedule</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form [formGroup]="DoctorForm">
+          <div class="modal-body">
+            <div class="form-group col-md-4">
+              <mat-form-field>
+                <mat-label>Select Day</mat-label>
+                <mat-select formControlName="day">
+                  <mat-option *ngFor="let Day of Days" [value]="Day.value">
+                    {{Day.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="form-group col-md-4">
+              <mat-form-field>
+                <mat-label>Select Time Of Opening</mat-label>
+                <mat-select formControlName="Time_Of_Opening">
+                  <mat-option *ngFor="let TimeOfOpening of TimeOfOpenings" [value]="TimeOfOpening.value">
+                    {{TimeOfOpening.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="form-group col-md-4">
+              <mat-form-field>
+                <mat-label>Select Time Of Closing</mat-label>
+                <mat-select formControlName="Time_Of_Closing">
+                  <mat-option *ngFor="let TimeOfClosing of TimeOfClosings" [value]="TimeOfClosing.value">
+                    {{TimeOfClosing.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
 
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" (click)="EditDocrtorProfile()" data-dismiss="modal" class="btn btn-primary">Save
+              changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
   <!-- Footer -->
   <footer>
     <!-- Container -->
