@@ -69,14 +69,11 @@ import { FilterForProductsPipe } from './filter-for-products.pipe';
 import { PatientComponent } from './patient/patient.component';
 import { PatientProfileComponent } from './patient/patient-profile/patient-profile.component';
 import { AllPatientComponent } from './patient/all-patient/all-patient.component';
-<<<<<<< HEAD
 import { CheckBoxFiltrePipe } from './check-box-filtre.pipe';
 import { Ng5SliderModule } from 'ng5-slider';
 import { FiltrePricePipe } from './filtre-price.pipe';
 import { ChatComponent } from './chat/chat.component';
-=======
 import { FilterdoctorsPipe } from './filterdoctors.pipe';
->>>>>>> 2c0fb83e996fbf560efd691e43c47bb38837fc17
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 @NgModule({
@@ -105,13 +102,10 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     PatientComponent,
     PatientProfileComponent,
     AllPatientComponent,
-<<<<<<< HEAD
     CheckBoxFiltrePipe,
     FiltrePricePipe,
-    ChatComponent
-=======
+    ChatComponent,
     FilterdoctorsPipe
->>>>>>> 2c0fb83e996fbf560efd691e43c47bb38837fc17
   ],
   imports: [
     BrowserModule,

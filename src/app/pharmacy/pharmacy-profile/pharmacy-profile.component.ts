@@ -135,11 +135,7 @@ var reader = new FileReader();
   }
 
   ngOnInit() {
-<<<<<<< HEAD
     this.id_pharmacy = this.authService.ConnectedToken.id_pharmacy;
-=======
-    this.id_pharmacy = jwt_decode(this.cookieService.get('token')).id.id_pharmacy;
->>>>>>> 2c0fb83e996fbf560efd691e43c47bb38837fc17
     this.pharmacyService.GetPharmacyById(this.id_pharmacy).subscribe((data: any) => {
       this.results = [data];
     });
@@ -149,11 +145,7 @@ var reader = new FileReader();
     });
   }
   EditPharmacyProfile() {
-<<<<<<< HEAD
     this.id_pharmacy = this.authService.ConnectedToken.id_pharmacy;
-=======
-    this.id_pharmacy = jwt_decode(this.cookieService.get('token')).id.id_pharmacy;
->>>>>>> 2c0fb83e996fbf560efd691e43c47bb38837fc17
     this.pharmacyService.EditPharmacyById(this.id_pharmacy, this.PharmacyForm.value).subscribe((data: any) => {
       console.log(data);
       this.ngOnInit();
@@ -163,7 +155,6 @@ var reader = new FileReader();
     console.log(event.target.files[0])
     this.selectedImage = event.target.files[0]
   }
-<<<<<<< HEAD
   AddProduct(){
     this.id_pharmacy = this.authService.ConnectedToken.id_pharmacy;
    const formData = new FormData();
@@ -176,20 +167,6 @@ var reader = new FileReader();
    formData.append('Description',this.ProductForm.value.Description)
    formData.append('Product_image', this.selectedImage.name);
    formData.append('image', this.selectedImage);
-=======
-  AddProduct() {
-    this.id_pharmacy = jwt_decode(this.cookieService.get('token')).id.id_pharmacy;
-    const formData = new FormData();
-    formData.append('Name', this.ProductForm.value.Name);
-    formData.append('Price', this.ProductForm.value.Price);
-    formData.append('Date_Of_Entry', this.ProductForm.value.Date_Of_Entry);
-    formData.append('Date_Of_Expiration', this.ProductForm.value.Date_Of_Expiration);
-    formData.append('Amount', this.ProductForm.value.Amount);
-    formData.append('Product_Category', this.ProductForm.value.Product_Category);
-    formData.append('Description', this.ProductForm.value.Description)
-    formData.append('Product_image', this.selectedImage.name);
-    formData.append('image', this.selectedImage);
->>>>>>> 2c0fb83e996fbf560efd691e43c47bb38837fc17
 
     console.log(formData)
     this.pharmacyService.AddProduct(this.id_pharmacy, formData).subscribe((data: any) => {
