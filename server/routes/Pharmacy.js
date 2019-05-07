@@ -93,6 +93,11 @@ router.get('/allPharmacy', async (req, res) => {
   const result = await Pharmacy.find().populate({ path: 'id_user', select: ['user_image', 'adresse'] }).catch(err => err)
   res.send(result)
 })
+
+router.get('/allUsers' , async (req, res) => {
+  const result = await User.find().populate([{path : 'id_doctor', select : ['specialty']}, { path : 'id_pharmacy', select : ['Pharmacy_name']}]).catch(err => err)
+  res.send(result)
+})
 router.get('/allProducts', async (req, res) => {
   const result = await Product.find().populate([{ path: 'Product_Pharmacy', model: 'Pharmacy', populate: { path: 'id_user', model: 'User' } }]).catch(err => err)
   res.send(result)

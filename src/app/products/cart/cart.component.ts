@@ -12,12 +12,12 @@ export class CartComponent implements OnInit {
   Id_Cart: any;
   results: any;
   Products: any;
-QuantityForm : FormGroup;
+  QuantityForm: FormGroup;
   total: number;
   constructor(private pharmacyService: PharmacyService, public authService: AuthService) {
     this.QuantityForm = new FormGroup({
-      Quantity : new FormControl('', [Validators.required, Validators.min(1)])
-    })
+      Quantity: new FormControl('', [Validators.required, Validators.min(1)])
+    });
   }
 
   ngOnInit() {
@@ -28,40 +28,43 @@ QuantityForm : FormGroup;
       console.log(data)
       this.Products = data.My_Products;
       console.log(this.Products);
+      this.authService.ConnectedToken.data = this.Products;
+      console.log('aaaaa', this.authService.ConnectedToken.data)
     });
   }
-DeleteFormCart(id_product){
-  this.Id_Cart = this.authService.ConnectedToken.id_Cart;
-  this.pharmacyService.DeleteProductFromCart(id_product, this.Id_Cart).subscribe((data: any) => {
-    console.log(data);
-    this.ngOnInit();
-  })
+  DeleteFormCart(id_product) {
+    this.Id_Cart = this.authService.ConnectedToken.id_Cart;
+    this.pharmacyService.DeleteProductFromCart(id_product, this.Id_Cart).subscribe((data: any) => {
+      console.log(data);
+      this.ngOnInit();
+    })
 
-}
-getTotal(price, quantity) {
-  this.total = price * quantity;
-  return this.total;
-}
-ChangeQuantity(id_product, i){
-  if (this.QuantityForm.value.Quantity > 0) {
-  this.Id_Cart = this.authService.ConnectedToken.id_Cart;
-  const obj ={
-    productName: id_product,
-    Quantity : this.QuantityForm.value.Quantity
-  };
-  this.pharmacyService.ChangeQuantityOfProduct(id_product, this.Id_Cart, i, obj).subscribe((data: any) => {
-    console.log('change', data);
-    this.ngOnInit();
-  });
-}
-}
-GetAllTotal(){
-  var total = 0;
-  for(var i = 0; i < this.Products.length; i++){
-      var product = this.Products[i];
-      total += (product.productName.Price * product.Quantity);
   }
-  console.log(total);
-  return total;
-}
+  getTotal(price, quantity) {
+    this.total = price * quantity;
+    return this.total;
+  }
+  ChangeQuantity(id_product, i) {
+    if (this.QuantityForm.value.Quantity > 0) {
+      this.Id_Cart = this.authService.ConnectedToken.id_Cart;
+      const obj = {
+        productName: id_product,
+        Quantity: this.QuantityForm.value.Quantity
+      };
+      this.pharmacyService.ChangeQuantityOfProduct(id_product, this.Id_Cart, i, obj).subscribe((data: any) => {
+        console.log('change', data);
+        this.ngOnInit();
+      });
+    }
+  }
+  GetAllTotal() {
+    let total = 0;
+    for (let i = 0; i < this.Products.length; i++) {
+      const product = this.Products[i];
+      total += (product.productName.Price * product.Quantity);
+    }
+    this.authService.ConnectedToken['price'] = total;
+    console.log(total);
+    return total;
+  }
 }

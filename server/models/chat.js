@@ -4,10 +4,9 @@ var Chats= new Schema({
     userOne : {type: mongoose.SchemaTypes.ObjectId, ref:'User'},
     userTwo: {type: mongoose.SchemaTypes.ObjectId, ref:'User'},
     messages : [{
-      from : {type: mongoose.SchemaTypes.ObjectId, ref:'User'},
-      to : {type: mongoose.SchemaTypes.ObjectId, ref:'User'},
-      contenu : String,
-      date: Date,
+      user : {type: mongoose.SchemaTypes.ObjectId, ref:'User'},
+      content : String,
+      date:{type: Date, default: Date.now()}
     }],
 
 })

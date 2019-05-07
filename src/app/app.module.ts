@@ -69,6 +69,10 @@ import { FilterForProductsPipe } from './filter-for-products.pipe';
 import { PatientComponent } from './patient/patient.component';
 import { PatientProfileComponent } from './patient/patient-profile/patient-profile.component';
 import { AllPatientComponent } from './patient/all-patient/all-patient.component';
+import { CheckBoxFiltrePipe } from './check-box-filtre.pipe';
+import { Ng5SliderModule } from 'ng5-slider';
+import { FiltrePricePipe } from './filtre-price.pipe';
+import { ChatComponent } from './chat/chat.component';
 import { FilterdoctorsPipe } from './filterdoctors.pipe';
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -98,6 +102,9 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     PatientComponent,
     PatientProfileComponent,
     AllPatientComponent,
+    CheckBoxFiltrePipe,
+    FiltrePricePipe,
+    ChatComponent,
     FilterdoctorsPipe
   ],
   imports: [
@@ -143,7 +150,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
       ReactiveFormsModule,
       HttpClientModule,
          SocketIoModule.forRoot(config),
-         FilterPipeModule
+         FilterPipeModule,
+         Ng5SliderModule
     ],
   exports: [ ],
   providers: [CookieService],
