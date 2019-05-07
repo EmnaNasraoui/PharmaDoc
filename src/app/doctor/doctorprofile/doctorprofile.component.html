@@ -113,17 +113,20 @@
     <div class="container">
       <div class="row">
         <div class="col-md-4" *ngFor="let result of results">
-          <div class="profile-image" >
+          <div class="profile-image">
             <img src="http://localhost:3000/user/image/{{result.id_user.user_image}}" alt="Doctor Profile">
           </div>
-          <div class="form-group col-md-6">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin-left: 60px;margin-top: 12px">
-              Schedule
+
+          <div class="col-md-8">
+            <button type="button" class="btn border medium center " data-toggle="modal" data-target="#exampleModal"
+              style="margin-left: 65px;
+            ">
+              SCHEDULE
             </button>
           </div>
           <br><br>
           <h5 class="mt20"><b>Timming</b></h5>
-         <table class="table table-striped" *ngFor=" let Schedules of result.Schedule ">
+          <table class="table table-striped" *ngFor=" let Schedules of result.Schedule ">
             <tr>
               <td>{{Schedules.day}}</td>
               <td>{{Schedules.Time_Of_Opening}}h – {{Schedules.Time_Of_Closing}}h</td>
@@ -131,10 +134,20 @@
 
           </table>
         </div>
-        <a class="btn border medium" (click)= "goToTimeTable()">Button</a>
+
+        <!-- <a class="btn border medium" (click)= "goToTimeTable()">Button</a> -->
 
         <div class="col-md-8" *ngFor="let result of results">
-          <h3 class="text-blue">Dr. {{result.id_user.first_name}} {{result.id_user.last_name}}</h3>
+          <div class="row">
+            <div class="col-md-8">
+              <h3 class="text-blue">Dr. {{result.id_user.first_name}} {{result.id_user.last_name}}</h3>
+            </div>
+            <div class="col-md-4">
+              <button type="button" class="btn border medium center " data-toggle="modal" data-target="#exampleModal1">
+                EDIT PROFILE
+              </button>
+            </div>
+          </div>
           <p>{{result.specialty}}</p>
           <p class="mt20">Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum
             which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour,
@@ -143,6 +156,17 @@
             more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
           <br>
           <div class="panel-group" id="accordion">
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" (click)="goToTimeTable()"><i
+                      class="fa fa-envelope-o" aria-hidden="true"></i>Check all Appointments</a>
+                </h4>
+              </div>
+            </div>
+
+
             <!--  <div class="panel panel-default">
               <div class="panel-heading">
                 <h4 class="panel-title">
@@ -187,6 +211,7 @@
             </div> -->
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -357,6 +382,47 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="height: 481px">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">EDIT PROFILE</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form [formGroup]="DoctorFormEdit">
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              <label for="validationDefault01">First name</label>
+              <input type="text" class="form-control" id="validationDefault01" placeholder="First name">
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationDefault02">Last name</label>
+              <input type="text" class="form-control" id="validationDefault02" placeholder="Last name">
+            </div>
+
+          </div>
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <label for="validationDefault03">Adress</label>
+              <input type="text" class="form-control" id="validationDefault03" placeholder="Adress">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <label for="validationDefault03">Speciality</label>
+              <input type="text" class="form-control" id="validationDefault03" placeholder="Speciality" formControlName="specialty">
+            </div>
+          </div>
+          <button [disabled]="!DoctorFormEdit.valid" class="btn btn-primary" type="submit" style="margin-top: 336px"(click)="EditFormProfile()">Submit form</button>
+        </form>
+    </div>
+  </div>
+
+</div>
   <!-- Footer -->
   <footer>
     <!-- Container -->

@@ -77,12 +77,16 @@ export class DoctorprofileComponent implements OnInit {
   ID: any;
   results;
   DoctorForm: FormGroup;
+  DoctorFormEdit: FormGroup;
   id_Doctor;
   constructor(private apiService: DoctorService, private route: ActivatedRoute, private router: Router, private authService: AuthService) {
     this.DoctorForm = new FormGroup({
       day: new FormControl(''),
       Time_Of_Opening: new FormControl(''),
       Time_Of_Closing: new FormControl(''),
+    });
+    this.DoctorFormEdit = new FormGroup({
+      specialty: new FormControl(''),
     });
   }
 
@@ -105,5 +109,23 @@ export class DoctorprofileComponent implements OnInit {
 
   goToTimeTable() {
     this.router.navigate(['/doctor/timetable']);
+  }
+
+  EditFormProfile() {
+    this.id_Doctor = this.authService.ConnectedToken.id_doctor;
+    if (this.DoctorFormEdit.valid) {
+      const formData = new FormData();
+      formData.append('specialty', this.DoctorFormEdit.value.specialty);
+      console.log('iD', this.id_Doctor);
+      console.log('formData', this.DoctorFormEdit.value.specialty);
+
+      this.apiService.EditProfileDoctor(this.id_Doctor, formData).subscribe((file: any) => {
+        //this.authService = file.token;
+        //this.authService.deleteAll();
+        //this.authService.set('token', this.authService);
+        console.log('authService', this.authService);
+        // this.ngOnInit();
+      });
+    }
   }
 }

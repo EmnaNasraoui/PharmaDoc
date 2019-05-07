@@ -16,8 +16,10 @@ router.post('/addDoctor', async (req, res) => {
     res.send(result)
 }) ;
 
-router.post('/editDoctor/:id', async (req, res) => {
-    const result = await Doctor.findByIdAndUpdate(req.params.id, { $set: req.body }).catch(err => err)
+router.post('/editDoctor/:id_doctor', async (req, res) => {
+    let id_doctor = { _id: ObjectId(req.params.id_doctor) }
+    const result = await Doctor.findByIdAndUpdate(id_doctor, { $set: req.body }).catch(err => err)
+
     res.send(result)
 }) ;
 

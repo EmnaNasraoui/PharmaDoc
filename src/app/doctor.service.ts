@@ -27,4 +27,9 @@ export class DoctorService {
     return this.http.post(`http://localhost:3000/doctor/editDoctorTimes/${id_Doctor}`,Doctor);
 
   }
+
+  EditProfileDoctor(id_Doctor, Doctor) {
+    return this.http.post(`http://localhost:3000/doctor/editDoctor/${id_Doctor}`, Doctor);
+
+  }
 }
