@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class PharmacyService {
   CartProductNumber: any;
+
   constructor(private http: HttpClient) {
     this.CartProductNumber = 0;
   }
@@ -16,7 +17,7 @@ export class PharmacyService {
   EditPharmacyById(id, Pharmacy) {
     return this.http.post(`http://localhost:3000/pharmacy/editPharmacyTimes/${id}`, Pharmacy);
   }
-  AddProduct(id,Product) {
+  AddProduct(id, Product) {
     return this.http.post('http://localhost:3000/pharmacy/addProduct/' + id, Product);
   }
   GetProductById(id_pharmacy) {
@@ -26,7 +27,7 @@ export class PharmacyService {
     return this.http.get('http://localhost:3000/pharmacy/DeleteProduct/' + id_product);
   }
   EditProducts(id_product, Product) {
-    return this.http.post('http://localhost:3000/pharmacy/EditProduct/' + id_product , Product);
+    return this.http.post('http://localhost:3000/pharmacy/EditProduct/' + id_product, Product);
   }
   GetAllPharmacy() {
     return this.http.get('http://localhost:3000/pharmacy/allPharmacy');
@@ -43,10 +44,19 @@ export class PharmacyService {
   getMyCartById(id_Cart) {
     return this.http.get('http://localhost:3000/pharmacy/GetMyCartById/' + id_Cart);
   }
-  DeleteProductFromCart(id_product, id_cart){
+  DeleteProductFromCart(id_product, id_cart) {
     return this.http.get(`http://localhost:3000/pharmacy/deleteProductFromCart/${id_product}/${id_cart}`);
   }
-  ChangeQuantityOfProduct(id_product, id_cart, index, Quantity){
-    return this.http.post(`http://localhost:3000/pharmacy/EditProductQuantityOfMyCart/${id_product}/${id_cart}/${index}`, Quantity)
+  ChangeQuantityOfProduct(id_product, id_cart, index, Quantity) {
+    return this.http.post(`http://localhost:3000/pharmacy/EditProductQuantityOfMyCart/${id_product}/${id_cart}/${index}`, Quantity);
+  }
+  acceptParternship(id_partnership) {
+    return this.http.post(`http://localhost:3000/pharmacy/ValidatePartnership/${id_partnership}`, '');
+  }
+  deleteParternship(id_pharmacy, id_doctor, id_partnership) {
+    return this.http.post(`http://localhost:3000/pharmacy/deleteaPartnership/${id_pharmacy}/${id_doctor}/${id_partnership}`, '');
+  }
+  rejectPartnership(id_partnership) {
+    return this.http.post(`http://localhost:3000/pharmacy/RejectPartnership/${id_partnership}`, '');
   }
 }

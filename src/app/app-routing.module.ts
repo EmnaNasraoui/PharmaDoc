@@ -48,7 +48,7 @@ const routes: Routes = [
   },
   {path : 'pharmacy', component : PharmacyComponent, children:[
     {path : 'pharmacyProfile', component : PharmacyProfileComponent},
-    {path : 'allPharmacy', component : AllPharmacyComponent},
+    {path : 'allPharmacies', component : AllPharmacyComponent},
     {path : 'viewProfile/:id', component : ViewProfileComponent}
   ]},
   { path : 'test', component: TestComponent},

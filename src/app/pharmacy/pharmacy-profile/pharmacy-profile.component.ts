@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PharmacyService } from 'src/app/pharmacy.service';
-import * as jwt_decode from 'jwt-decode'
-import { CookieService } from 'ngx-cookie-service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth.service';
+import { Socket } from 'ngx-socket-io';
 export interface Roles {
   value: string;
   viewValue: string;
@@ -98,15 +97,20 @@ export class PharmacyProfileComponent implements OnInit {
   public message: string;
   products: any;
   id_product: any;
+  pharmacies: void;
+  parterships: void;
+  doctors: void;
+  PartnerShip_Status: any;
   preview(files) {
-  if(files.length ===0)
-  return;
-var mimeType = files[0].type;
-    if (mimeType.match(/image\/*/) == null) {
-      this.message = "Only images are supported.";
+    if (files.length === 0) {
       return;
     }
-var reader = new FileReader();
+    const mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.message = 'Only images are supported.';
+      return;
+    }
+    const reader = new FileReader();
     this.imagePath = files;
     reader.readAsDataURL(files[0]);
     reader.onload = (_event) => {
@@ -114,8 +118,9 @@ var reader = new FileReader();
       this.imageChoice = 1;
 
     }
-  }
-  constructor(private pharmacyService: PharmacyService, private cookieService: CookieService, private authService: AuthService) {
+  };
+
+  constructor(private socket: Socket, private pharmacyService: PharmacyService, private authService: AuthService) {
     this.PharmacyForm = new FormGroup({
       day: new FormControl(''),
       Time_Of_Opening: new FormControl(''),
@@ -136,12 +141,24 @@ var reader = new FileReader();
 
   ngOnInit() {
     this.id_pharmacy = this.authService.ConnectedToken.id_pharmacy;
+    console.log(this.id_pharmacy)
     this.pharmacyService.GetPharmacyById(this.id_pharmacy).subscribe((data: any) => {
+
       this.results = [data];
-    });
+      console.log('this.results', data);
+      this.pharmacies = data.id_pharmacy;
+      this.parterships = data.id_pharmacy.partnership;
+      console.log('zaea', this.parterships)
+      console.log('partnership Statue', this.PartnerShip_Status)
+      console.log(this.pharmacies)
+      console.log(data)
+  });
     this.pharmacyService.GetProductById(this.id_pharmacy).subscribe((data: any) => {
       this.products = data;
-      console.log(data);
+      console.log('this.products', this.products);
+    });
+    this.socket.on('requestSended', () => {
+      this.ngOnInit()
     });
   }
   EditPharmacyProfile() {
@@ -155,24 +172,24 @@ var reader = new FileReader();
     console.log(event.target.files[0])
     this.selectedImage = event.target.files[0]
   }
-  AddProduct(){
+  AddProduct() {
     this.id_pharmacy = this.authService.ConnectedToken.id_pharmacy;
-   const formData = new FormData();
-   formData.append('Name',this.ProductForm.value.Name);
-   formData.append('Price',this.ProductForm.value.Price);
-   formData.append('Date_Of_Entry', this.ProductForm.value.Date_Of_Entry);
-   formData.append('Date_Of_Expiration', this.ProductForm.value.Date_Of_Expiration);
-   formData.append('Amount',this.ProductForm.value.Amount);
-   formData.append('Product_Category', this.ProductForm.value.Product_Category);
-   formData.append('Description',this.ProductForm.value.Description)
-   formData.append('Product_image', this.selectedImage.name);
-   formData.append('image', this.selectedImage);
+    const formData = new FormData();
+    formData.append('Name', this.ProductForm.value.Name);
+    formData.append('Price', this.ProductForm.value.Price);
+    formData.append('Date_Of_Entry', this.ProductForm.value.Date_Of_Entry);
+    formData.append('Date_Of_Expiration', this.ProductForm.value.Date_Of_Expiration);
+    formData.append('Amount', this.ProductForm.value.Amount);
+    formData.append('Product_Category', this.ProductForm.value.Product_Category);
+    formData.append('Description', this.ProductForm.value.Description)
+    formData.append('Product_image', this.selectedImage.name);
+    formData.append('image', this.selectedImage);
 
-    console.log(formData)
+    console.log(formData);
     this.pharmacyService.AddProduct(this.id_pharmacy, formData).subscribe((data: any) => {
-      console.log(data)
-      this.ngOnInit()
-    })
+      console.log(data);
+      this.ngOnInit();
+    });
   }
   deleteProduct(id_product) {
     console.log(id_product);
@@ -211,5 +228,26 @@ var reader = new FileReader();
       console.log(data);
       this.ngOnInit();
     });
+  }
+  acceptParternship(id_partnership) {
+    this.id_pharmacy = this.authService.ConnectedToken.id_pharmacy;
+    this.pharmacyService.acceptParternship(id_partnership).subscribe((data: any) => {
+      console.log(data);
+    });
+    this.ngOnInit();
+  }
+  deletePartnership(id_doctor, id_partnership) {
+    this.id_pharmacy = this.authService.ConnectedToken.id_pharmacy;
+    this.pharmacyService.deleteParternship(this.id_pharmacy, id_doctor, id_partnership).subscribe((data: any) => {
+      console.log(data);
+    });
+    this.ngOnInit()
+  }
+  rejectPartnership(id_partnership) {
+    this.pharmacyService.rejectPartnership(id_partnership).subscribe((data: any) => {
+      console.log(data);
+      alert('Rejected');
+    });
+    this.ngOnInit()
   }
 }

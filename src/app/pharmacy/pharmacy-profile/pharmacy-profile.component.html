@@ -12,36 +12,86 @@
 
 <section id="doctor-profile" class="default-bg" *ngFor='let result of results'>
   <div class="container">
-    <div class="row">
+    <div class="row" *ngFor=" let pharmacy of [pharmacies]">
       <div class="col-md-4">
         <div class="profile-image">
           <img src="http://localhost:3000/user/image/{{result.user_image}}" alt="Doctor Profile">
         </div>
         <h5 class="mt20"><b>I am avaliable every day</b></h5>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-2">
           <button type="button" class="btn btn-primary scheduleButton" data-toggle="modal" data-target="#exampleModal">
             Schedule
           </button>
-          <button type="button" class="btn btn-primary productButton" (click)="ProductForm.reset()" data-toggle="modal" data-target="#exampleModal1">
+        </div>
+        <div class="form-group col-md-2">
+          <button type="button" style="margin-left: 91px" class="btn btn-primary productButton"
+            (click)="ProductForm.reset()" data-toggle="modal" data-target="#exampleModal1">
             Add Product
           </button>
         </div>
-        <table class="table table-striped" *ngFor=" let Schedules of result.id_pharmacy.Schedule ">
+
+        <table class="table table-striped" *ngFor=" let Schedules of pharmacy.Schedule">
           <tr>
             <td>{{Schedules.day}}</td>
             <td>{{Schedules.Time_Of_Opening}}h – {{Schedules.Time_Of_Closing}}h</td>
           </tr>
         </table>
       </div>
+
       <div class="col-md-8">
-        <h3 class="text-blue">{{result.id_pharmacy.Pharmacy_name}}</h3>
+        <div class="row">
+          <div class="col-md-4">
+            <h3 class="text-blue">{{pharmacy.Pharmacy_name}}</h3>
+          </div>
+        </div>
         <p>{{result.user_role}}</p>
         <p class="mt20">Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which
           looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or
           non-characteristic words etc.</p><br>
         <p>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
           recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><br>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"><i class="fa fa-user-md"
+                  aria-hidden="true"></i>Partnership requests</a>
+            </h4>
+          </div>
+          <div id="collapse3" class="panel-collapse collapse">
+            <div class="panel-body">
+              <table class="table" *ngFor=" let partnerships of pharmacy.partnership ">
+                <thead *ngFor=" let partnerships of pharmacy.partnership ">
+                  <tr>
+                    <th>Doctor Name</th>
+                    <th>Statue</th>
+                    <th>Options</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{partnerships.Doctor.id_user.first_name}} {{partnerships.Doctor.id_user.last_name}}</td>
+                    <td>
+                      {{ (partnerships.PartnerShip_Status === 3 ) ?  'Rejected':  (partnerships.PartnerShip_Status === 1)?'Pending'  : (partnerships.PartnerShip_Status === 2)?'Affected'  :'Affected'}}
+                    </td>
+                    <td><a  (click)='acceptParternship(partnerships._id)'>
+                        <img *ngIf="partnerships.PartnerShip_Status === 1" class="icone" src='./../../../assets/image/icons8-checkmark-32.png'>
+                      </a>
+                        <a (click)='rejectPartnership(partnerships._id)'>
+                          <img *ngIf="partnerships.PartnerShip_Status === 1" class="icone" src='./../../../assets/image/icons8-delete-32.png'>
+                        </a>
+                        <a (click)='deletePartnership(partnerships.Doctor._id,partnerships._id)'>
+                          <img  *ngIf="partnerships.PartnerShip_Status === 2" class="icone" src='./../../../assets/image/icons8-delete-32.png'>
+                        </a>
+                     </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
+
+
     </div>
   </div>
 </section>
@@ -56,95 +106,99 @@
         <div class="doctor-box">
           <img src="http://localhost:3000/user/image/{{product.Product_image}}" alt="">
           <div class="doctor-box-content" style="height: 110%">
-            <a  routerLink="/products/product/{{product._id}}">
+            <a routerLink="/products/product/{{product._id}}">
               <h3>
                 {{product.Name}}
               </h3>
-              <p>{{product.Product_Pharmacy.Pharmacy_name}}</p>
+              <p>{{product.Product_Pharmacy?.Pharmacy_name}}</p>
               <p>Category : {{product.Product_Category}}</p>
               <p>Price : {{product.Price}}dt</p>
               <p>Amount : {{product.Amount}}</p>
             </a>
             <div class="doctor-social">
               <button type="button" class="btn btn-info" (click)="deleteProduct(product._id)">Delete</button>
-              <button type="button" class="btn btn-info" data-toggle="modal" (click)="getIndex(i)" data-target="#exampleModal2" >Edit</button>
+              <button type="button" class="btn btn-info" data-toggle="modal" (click)="getIndex(i)"
+                data-target="#exampleModal2">Edit</button>
             </div>
           </div>
         </div>
         <!--Modal Edit Product-->
-<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModal1Label"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel2">Edit Product</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form [formGroup]="ProductForm">
-        <div class="modal-body">
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModal1Label"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Edit Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form [formGroup]="ProductForm">
+                <div class="modal-body">
 
-          <div class="form-group col-md-6">
-            <label>Name</label>
-            <input type="text"  class="form-control" placeholder="" formControlName="Name">
-          </div>
-          <div class="form-group col-md-6">
-            <label>Price</label>
-            <input type="number"  class="form-control" placeholder="" formControlName="Price">
-          </div>
-          <div class="form-group col-md-6">
-            <label>Date Of Entry</label>
-            <input type="date"   class="form-control" placeholder="" formControlName="Date_Of_Entry">
-          </div>
+                  <div class="form-group col-md-6">
+                    <label>Name</label>
+                    <input type="text" class="form-control" placeholder="" formControlName="Name">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Price</label>
+                    <input type="number" class="form-control" placeholder="" formControlName="Price">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Date Of Entry</label>
+                    <input type="date" class="form-control" placeholder="" formControlName="Date_Of_Entry">
+                  </div>
 
-          <div class="form-group col-md-6">
-            <label>Date Of Expiration</label>
-            <input type="date" class="form-control" placeholder=""  formControlName="Date_Of_Expiration">
-          </div>
-          <div class="form-group col-md-6">
-            <mat-form-field>
-              <mat-label>Select Product Category</mat-label>
-              <mat-select formControlName="Product_Category"   >
-                <mat-option *ngFor="let Product_Category of Product_Categories" [value]="Product_Category.value">
-                  {{Product_Category.viewValue}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div class="form-group col-md-6">
-            <label>Amount</label>
-            <input type="number"  formControlName="Amount" class="form-control" placeholder="">
-          </div>
-          <div class="input-group">
-            <label>Description</label>
-          <textarea class="form-control"  id="exampleFormControlTextarea1" rows="3" formControlName="Description">
+                  <div class="form-group col-md-6">
+                    <label>Date Of Expiration</label>
+                    <input type="date" class="form-control" placeholder="" formControlName="Date_Of_Expiration">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <mat-form-field>
+                      <mat-label>Select Product Category</mat-label>
+                      <mat-select formControlName="Product_Category">
+                        <mat-option *ngFor="let Product_Category of Product_Categories"
+                          [value]="Product_Category.value">
+                          {{Product_Category.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Amount</label>
+                    <input type="number" formControlName="Amount" class="form-control" placeholder="">
+                  </div>
+                  <div class="input-group">
+                    <label>Description</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                      formControlName="Description">
            </textarea>
-          </div>
-          <div class="input-group col-md-6">
-            <div class="file-path-wrapper">
-              <input #file type="file" accept='image/*' (change)="preview(file.files);selectedFile($event)"
-                name="Product_image" class="file-path" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                <img *ngIf='imageChoice === 0'
-                src="http://localhost:3000/user/image/{{product?.Product_image}}"
-                class="imageSize">
+                  </div>
+                  <div class="input-group col-md-6">
+                    <div class="file-path-wrapper">
+                      <input #file type="file" accept='image/*' (change)="preview(file.files);selectedFile($event)"
+                        name="Product_image" class="file-path" id="inputGroupFile01"
+                        aria-describedby="inputGroupFileAddon01">
+                      <img *ngIf='imageChoice === 0' src="http://localhost:3000/user/image/{{product?.Product_image}}"
+                        class="imageSize">
 
-              <img *ngIf='imageChoice === 1'
-                [src]="imgURL || 'http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png'"
-                class="imageSize">
-              <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                      <img *ngIf='imageChoice === 1'
+                        [src]="imgURL || 'http://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder-350x350.png'"
+                        class="imageSize">
+                      <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" (click)="EditProduct(product._id)" data-dismiss="modal"
+                    class="btn btn-primary">Save
+                    changes</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" (click)="EditProduct(product._id)" data-dismiss="modal" class="btn btn-primary">Save
-            changes</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
       </div>
     </div>
   </div>
@@ -251,7 +305,7 @@
           </div>
           <div class="input-group col-md-6">
             <label>Description</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="Description">
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="Description">
            </textarea>
           </div>
           <div class="input-group col-md-6">

@@ -6,7 +6,7 @@ var DoctorSchema = new Schema({
     specialty: { type: String },
     partnership: [{
         type: Schema.Types.ObjectId,
-        ref: 'Pharmacy'
+        ref: 'PartnerShip'
     }],
     All_Appointment: [{
         type: Schema.Types.ObjectId,
@@ -21,7 +21,7 @@ var DoctorSchema = new Schema({
             Time_Of_Closing: { type: String }
         }
     ],
-    
+
     id_user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 })
 
