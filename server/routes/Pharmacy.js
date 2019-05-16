@@ -35,21 +35,15 @@ router.post('/editPharmacyTimes/:id', async (req, res) => {
 })
 
 router.get('/getPharmacyById/:id_pharmacy', async (req, res) => {
-  let Id_pharmacy = { _id: ObjectId(req.params.id_pharmacy) }
-  const result = await User.findOne({ id_pharmacy: Id_pharmacy }).populate({ path: 'id_pharmacy', select: ['Schedule', 'Pharmacy_name'] }).catch(err => err)
+  const result = await User.findOne({id_pharmacy: ObjectId(req.params.id_pharmacy)}).populate({ path: 'id_pharmacy',  model: 'Pharmacy', populate: { path: 'partnership', model: 'PartnerShip' ,populate: { path: 'Doctor', model: 'Doctor', populate: { path: 'id_user', model: 'User' } }} }).catch(err => err)
   res.send(result)
 })
 
-router.post('/ValidatePartnership/:id_pharmacy/:id_doctor/:id_partnership', async (req, res) => {
-  let Id_pharmacy = { _id: ObjectId(req.params.id_pharmacy) }
-  let Id_doctor = { _id: ObjectId(req.params.id_doctor) }
-  let Id_Partnership = { _id: ObjectId(req.params.id_partnership) }
+router.post('/ValidatePartnership/:id_partnership', async (req, res) => {
 
-  const result = await Pharmacy.findByIdAndUpdate(req.params.id_pharmacy, { $set: { Pharmacy_Doctor: Id_doctor } }).exec().catch(err => err)
-  const results = await Doctor.findByIdAndUpdate(req.params.id_doctor, { $set: { partnership: Id_pharmacy } }).exec().catch(err => err)
-  const result2 = await Partnership.findByIdAndUpdate(req.params.id_partnership, { $set: { PartnerShip_Status: 2 } }).exec().catch(err => err)
+    const result2 = await Partnership.findByIdAndUpdate(req.params.id_partnership, { $set: { PartnerShip_Status: 2 } }).exec().catch(err => err)
 
-  res.send({ msg: result, message: results, aa: result2 })
+  res.send({ msg: result2 })
 });
 
 router.post('/RejectPartnership/:id_partnership', async (req, res) => {
@@ -57,12 +51,13 @@ router.post('/RejectPartnership/:id_partnership', async (req, res) => {
   res.send({ message: result2 })
 });
 
-router.post('/deleteaPartnership/:id_pharmacy/:id_doctor', async (req, res) => {
+router.post('/deleteaPartnership/:id_pharmacy/:id_doctor/:id_partnership', async (req, res) => {
   let Id_pharmacy = ObjectId(req.params.id_pharmacy)
   let Id_doctor = ObjectId(req.params.id_doctor)
   const result = await Pharmacy.updateOne({ $pull: { Pharmacy_Doctor: Id_doctor } }).exec().catch(err => err)
   const results = await Doctor.updateOne({ $pull: { partnership: Id_pharmacy } }).exec().catch(err => err)
-  res.send({ msg: result, message: results })
+  const result2 = await Partnership.findByIdAndDelete(req.params.id_partnership)
+  res.send({ msg: result, message: results, MSG: result2 })
 });
 
 router.post('/addProduct/:id_pharmacy', upload.single('image'), async (req, res) => {

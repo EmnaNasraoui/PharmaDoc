@@ -6,12 +6,14 @@ import * as jwt_decode from 'jwt-decode';
 })
 export class AuthService {
 ConnectedToken;
+message: any;
   constructor(private http: HttpClient) {
     this.ConnectedToken = this.ConnectedUser();
     if (this.ConnectedToken !== null) {
     this.ConnectedToken['ownProducts'] = 0;
     this.ConnectedToken['price'] = 0;
     this.ConnectedToken.data = [];
+    this.ConnectedToken['message'] = [];
     }
   }
 

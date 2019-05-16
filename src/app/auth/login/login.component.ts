@@ -21,18 +21,30 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
-  login(){
+  login() {
     this.authService.logIn(this.UserForm.value).subscribe((data: any) => {
 
       if (data.lvl === 'Your connexion is valide') {
         this.token = data.token;
         this.authService.setToken(this.token);
         this.authService.ConnectedToken = this.authService.ConnectedUser();
+        if (this.authService.ConnectedToken.user_role === 'pharmacy') {
+          this.router.navigate(['/pharmacy/pharmacyProfile']);
+        }
+        else {
+          if (this.authService.ConnectedToken.user_role === 'patient') {
+            this.router.navigate(['/patient/patientProfile']);
+          }
+          else{
+            if (this.authService.ConnectedToken.user_role === 'doctor') {
+              this.router.navigate(['/doctor/doctorprofile']);
+            }
+          }
+        }
         // this.authService.ConnectedToken['ownProducts'] = 0;
-        this.router.navigate(['/doctor/doctorprofile']);
       }
       else{
-        alert(data.lvl)
+        alert(data.lvl);
       }
     })
   }

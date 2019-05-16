@@ -1,7 +1,7 @@
 const router = require('express').Router()
 var Doctor = require('../models/doctor');
 var RDV = require('../models/RDV');
-var RDV = require('../models/RDV');
+var Pharmacy = require('../models/pharmacy')
 var User = require('../models/user')
 var Prescription = require('../models/prescription');
 var Partnership = require('../models/partnership');
@@ -84,10 +84,18 @@ router.post('/partnerShipToValidate/:id_doctor/:id_pharmacy', async (req, res) =
         Pharmacy: req.params.id_pharmacy,
         Doctor: req.params.id_doctor
     }
-    const add1 = await Partnership.create(PartnershipObject).catch(err => err)
+    const io = req.app.get('io');
+    const add1 = await Partnership.create(PartnershipObject).catch(err => err);
+    const add2 = await Pharmacy.findByIdAndUpdate(req.params.id_pharmacy, {$set : {partnership: add1}}).catch(err => err);
+    const add3 = await Doctor.findByIdAndUpdate(req.params.id_doctor, {$set : {partnership: add1}}, function(err2, add4) {
+      io.emit('requestSended', { MSG: 'You have a new partnership request' })}).catch(err => err)
+}) ;
+router.get('/Getpartnership', async (req, res) => {
 
-    console.log(add1)
-    res.send({ msg: add1 });
+  const add1 = await Partnership.find().populate([{path: 'Pharmacy', select: ['Pharmacy_name']}, { path: 'Doctor', model: 'Doctor', populate: { path: 'id_user', model: 'User' } }]).catch(err => err);
+
+  console.log(add1)
+  res.send({ msg1: add1 });
 
 }) ;
 
