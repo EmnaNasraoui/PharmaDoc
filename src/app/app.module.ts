@@ -74,6 +74,10 @@ import { Ng5SliderModule } from 'ng5-slider';
 import { FiltrePricePipe } from './filtre-price.pipe';
 import { ChatComponent } from './chat/chat.component';
 import { FilterdoctorsPipe } from './filterdoctors.pipe';
+import { ChechBoxDoctorPipe } from './chech-box-doctor.pipe';
+import { CalendarModule } from 'angular-calendar';
+import { SchedulerModule } from 'angular-calendar-scheduler';
+import { DashboardDoctorComponent } from './doctor/dashboard-doctor/dashboard-doctor.component';
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 @NgModule({
@@ -105,7 +109,9 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     CheckBoxFiltrePipe,
     FiltrePricePipe,
     ChatComponent,
-    FilterdoctorsPipe
+    FilterdoctorsPipe,
+    ChechBoxDoctorPipe,
+    DashboardDoctorComponent
   ],
   imports: [
     BrowserModule,

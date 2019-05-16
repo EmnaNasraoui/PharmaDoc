@@ -22,6 +22,7 @@ import { PatientComponent } from './patient/patient.component';
 import { PatientProfileComponent } from './patient/patient-profile/patient-profile.component';
 import { AllPatientComponent } from './patient/all-patient/all-patient.component';
 import { ChatComponent } from './chat/chat.component';
+import { DashboardDoctorComponent } from './doctor/dashboard-doctor/dashboard-doctor.component';
 
 
 const routes: Routes = [
@@ -38,7 +39,7 @@ const routes: Routes = [
     path: 'doctor', component: DoctorComponent , children :[
       {path :'alldoctors', component: AlldoctorsComponent},
       {path :'singledoctor/:id', component :SingledoctorComponent},
-      {path :'timetable', component :TimetableComponent},
+      {path :'dhasboard/:id', component :DashboardDoctorComponent},
       {path :'doctorprofile', component :DoctorprofileComponent},
       {path :'**', redirectTo:'alldoctors' },
       {path : 'alldoctors' , component: AlldoctorsComponent},

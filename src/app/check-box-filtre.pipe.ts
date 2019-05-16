@@ -7,8 +7,6 @@ export class CheckBoxFiltrePipe implements PipeTransform {
 
   transform(value: any[], searchJson: any) {
 
-    console.log(searchJson.Product_Category.length);
-
     if (searchJson.Product_Category.length === 0) {
       return value;
     }

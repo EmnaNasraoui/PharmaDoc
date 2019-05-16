@@ -160,8 +160,17 @@
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" (click)="goToTimeTable()"><i
-                      class="fa fa-envelope-o" aria-hidden="true"></i>Check all Appointments</a>
+                  <a data-toggle="collapse" data-parent="#accordion" routerLink="/doctor/dhasboard/{{result._id}}"><i
+                      class="fa fa-envelope-o" aria-hidden="true" ></i>Check all Appointments</a>
+
+                </h4>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion"><i
+                      class="fa fa-envelope-o" aria-hidden="true"></i>Check all PartnerShips</a>
                 </h4>
               </div>
             </div>
@@ -417,7 +426,7 @@
               <input type="text" class="form-control" id="validationDefault03" placeholder="Speciality" formControlName="specialty">
             </div>
           </div>
-          <button [disabled]="!DoctorFormEdit.valid" class="btn btn-primary" type="submit" style="margin-top: 336px"(click)="EditFormProfile()">Submit form</button>
+          <button class="btn btn-primary" type="submit" style="margin-top: 336px"(click)="EditFormProfile()">Submit form</button>
         </form>
     </div>
   </div>

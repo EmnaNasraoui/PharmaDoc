@@ -6,6 +6,7 @@ let RDVSchema = new Schema({
         type: String,
         required: true
     },
+
     Doctor_avail: {
         type: Schema.Types.ObjectId,
         ref: 'User',
