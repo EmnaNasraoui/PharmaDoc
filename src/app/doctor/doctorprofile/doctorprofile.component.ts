@@ -77,12 +77,16 @@ export class DoctorprofileComponent implements OnInit {
   ID: any;
   results;
   DoctorForm: FormGroup;
+  DoctorFormEdit: FormGroup;
   id_Doctor;
   constructor(private apiService: DoctorService, private route: ActivatedRoute, private router: Router, private authService: AuthService) {
     this.DoctorForm = new FormGroup({
       day: new FormControl(''),
       Time_Of_Opening: new FormControl(''),
       Time_Of_Closing: new FormControl(''),
+    });
+    this.DoctorFormEdit = new FormGroup({
+      specialty: new FormControl(''),
     });
   }
 
@@ -103,7 +107,25 @@ export class DoctorprofileComponent implements OnInit {
     });
   }
 
-  goToTimeTable() {
-    this.router.navigate(['/doctor/timetable']);
+  // goToTimeTable() {
+  //   this.router.navigate(['/doctor/timetable']);
+  // }
+
+  EditFormProfile() {
+    this.id_Doctor = this.authService.ConnectedToken.id_doctor;
+      const formData = {
+        specialty: this.DoctorFormEdit.value.specialty
+      };
+
+      this.apiService.EditProfileDoctor(this.id_Doctor, formData).subscribe((file: any) => {
+       console.log(file);
+        this.ngOnInit();
+      });
+  }
+  gotoDoctorbyid(id) {
+    // this.id = param.get('id');
+    console.log(id);
+    // this.apiService.setid(id);
+      this.router.navigate(['/doctor/dhasboard/' + id]);
   }
 }

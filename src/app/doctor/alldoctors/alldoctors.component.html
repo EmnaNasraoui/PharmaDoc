@@ -101,23 +101,23 @@
       </div>
     </section>
 
-    <div class="blog-widget ">
-      <h3 class="margin">Search</h3>
-      <ul>
-        <input placeholder="search">
 
-        </ul>
-    </div>
+
 
   <section id="meet-doctors-wide" class="grey-bg">
     <div class="container">
       <div class="row">
 
+<div class="col-md-4">
+<h3> <span class="text-blue text-light">Choose With Spaciality</span></h3>
+      <mat-checkbox (click)="addToFilter('power of money')">Power of money</mat-checkbox><br>
+      <mat-checkbox (click)="addToFilter('Ortho')">Ortho</mat-checkbox><br>
+      <mat-checkbox (click)="addToFilter('Médecine Générale')">Médecine Générale</mat-checkbox>
+    </div>
 
-
-
-
-        <div class="col-md-4" *ngFor="let result of results">
+  </div>
+    <div class="row">
+        <div class="col-md-4" *ngFor="let result of filteredSpecialty | chechBoxDoctor: searchJson">
           <div class="doctor-box">
           <img src="http://localhost:3000/user/image/{{result.id_user.user_image}}" alt="">
           <div class="doctor-box-content">

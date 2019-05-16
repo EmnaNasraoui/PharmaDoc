@@ -19,7 +19,9 @@ router.post('/getRDV/:id_doctor/:id_patient', async (req, res) => {
     console.log(result._id)
     let ID = result._id;
     const result1 = await Doctor.findByIdAndUpdate({ _id: id_D }, { $push: { All_Appointment: ObjectId(ID) } }).exec().catch(err => err)
+    console.log(result1)
     res.send(result)
+
 });
 
 router.get('/get_list_doctor', async (req, res) => {

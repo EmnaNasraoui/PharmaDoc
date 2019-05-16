@@ -1,0 +1,214 @@
+<body>
+
+    <!-- Nav -->
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <!-- LOGO -->
+            <a class="navbar-brand page-scroll" href="index.html"><i class="fa fa-heartbeat" aria-hidden="true"></i> Kosi<span class="text-blue text-light">Medic</span></a>
+            <!-- END / LOGO -->
+
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a class="page-scroll" href="#page-top"></a>
+                    </li>
+                    <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
+                  <ul class="dropdown-menu dropdown-menu-left">
+                    <li><a href="index.html">Home Default</a></li>
+                    <li><a href="home-form.html">Home With Form</a></li>
+                    <li><a href="index-v2.html">Home Colorful Navigation</a></li>
+                    <li><a href="index-v3.html">Home Without Slider</a></li>
+                    <li><a href="https://www.mianfolio.com/kosimedic/v1.3.1/boxed/index.html">Home Boxed</a></li>
+                  </ul>
+              </li>
+                    <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About</a>
+                  <ul class="dropdown-menu dropdown-menu-left">
+                    <li><a href="about.html">About us</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="testimonials.html">Testimonials</a></li>
+                  </ul>
+              </li>
+                    <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Doctors</a>
+                  <ul class="dropdown-menu dropdown-menu-left">
+              <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Doctors <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                <ul class="dropdown-menu">
+                      <li><a href="doctors.html">Doctors</a></li>
+                      <li><a href="doctor-profile.html">Doctor Profile</a></li>
+                </ul>
+              </li>
+                  </ul>
+              </li>
+                    <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Departments</a>
+                  <ul class="dropdown-menu dropdown-menu-left">
+                    <li><a href="departments.html">Departments</a></li>
+                    <li><a href="department-single.html">Department Single</a></li>
+                  </ul>
+              </li>
+                    <li>
+                  <a href="timetable.html">Timetable</a>
+              </li>
+                    <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Feautures</a>
+                  <ul class="dropdown-menu dropdown-menu-left">
+                    <li><a href="buttons.html">Buttons</a></li>
+                    <li><a href="tabs.html">Tabs</a></li>
+                    <li><a href="typography.html">Typography</a></li>
+                    <li><a href="icons.html">Icons</a></li>
+                    <li><a href="grid.html">Grids</a></li>
+                    <li><a href="alerts.html">Notifications</a></li>
+                    <li><a href="404.html">404</a></li>
+                  </ul>
+              </li>
+                    <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
+                  <ul class="dropdown-menu dropdown-menu-left">
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="blog-single.html">Blog Single</a></li>
+                  </ul>
+              </li>
+                    <li>
+                  <a href="contact.html">Contact</a>
+              </li>
+          </ul> <!-- END / NAVBAR RIGHT -->
+        </div>
+        </div> <!-- END CONTAINER -->
+    </nav>
+    <!-- ./end Nav -->
+
+    <section class="gardient-bg-small" >
+      <div class="container">
+        <h1 class="pull-left">Timetable</h1>
+      <div class="pull-right">
+        <ol class="breadcrumb">
+          <li><a href="index.html">Home</a></li>
+          <li class="active">Timetable</li>
+      </ol>
+      </div>
+      </div>
+    </section>
+
+    <!-- <div class="calendar-wrapper">
+      <mat-calendar #calendar [(selected)]="selectedDate" (monthSelected)="monthSelected($event)" (selectedChange)="onDateChanged($event)"></mat-calendar>
+    </div> -->
+<div *ngFor="let result of results">
+    Dr. {{result.id_user.first_name}} {{result.id_user.last_name}}
+  <div *ngFor="let appointment of result.All_Appointment">
+
+      <p>{{appointment.Date_rdv}}</p>
+
+    <p>{{(appointment.RDV_Statut === '1') ? 'accept':(appointment.RDV_Statut === '0') ? 'non': 'non' }}</p>
+    <p>{{appointment.Patient_sik.id_user.first_name}}</p>
+
+  </div>
+</div>
+
+
+  <!-- contactModal -->
+  <div class="modal fade" id="timeTableModal" tabindex="-1" role="dialog" aria-labelledby="Book">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title" id="myModalLabel">Book Appointment</h4>
+      </div>
+      <div class="modal-body">
+      <form action="#" id="contact">
+        <div class="row">
+          <div class="col-md-8">
+            <input id="name" type="text" class="form-control" placeholder="Name">
+            <input id="email" type="text" class="form-control" placeholder="Email">
+            <textarea id="message" placeholder="Message" class="form-control" ></textarea>
+            <input id="contactFormBtn" type="submit" class="btn blue medium" value="Submit">
+            <button type="button" class="btn medium" data-dismiss="modal" aria-label="Close">Cancel</button>
+          </div>
+          <div class="col-md-4">
+            <img src="img/doctor-small.png" alt="Doctor Profile" class="hidden-xs hidden-sm">
+          </div>
+        </div>
+      </form>
+      </div>
+    </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+  <footer>
+    <!-- Container -->
+    <div class="container">
+      <!-- Row Begin -->
+      <div class="row">
+
+        <div class="col-md-3">
+          <div class="widget">
+            <h2 class="logo-font"><i class="fa fa-heartbeat" aria-hidden="true"></i> Kosi<span class="text-blue text-light">Medic</span></h2><br>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="widget">
+            <h3>Socials <span class="bottom-lin"></span></h3>
+            <ul>
+              <li>Facebook</li>
+              <li>Twitter</li>
+              <li>Youtube</li>
+              <li>Linkedin</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="widget">
+            <h3>About Us</h3>
+            <ul>
+              <li><a href="doctors.html">Doctors</a></li>
+              <li><a href="departments.html">Departments</a></li>
+              <li><a href="timetable.html">Timetable</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="widget">
+            <h3>Contact</h3>
+            <ul>
+              <li>My Street, NY 10036, United States</li>
+              <li>Phone: 1-800-555-5555</li>
+              <li>Email: example@kosimedic.com</li>
+              <li>Office Offers: 09:00am - 17:00pm</li>
+            </ul>
+          </div>
+        </div>
+      </div> <!-- ./end Row -->
+    </div> <!-- ./end Container -->
+    <!-- Footer Copyright -->
+    <div class="footer-slogan">
+      &copy; 2016 KosiMedic
+    </div>
+    <!-- ./end Footer Copyright -->
+  </footer>
+  <!-- ./end Footer -->
+
+  <!-- Scroll to top -->
+  <div class="scroll-top">
+    <a href="#totop"><i class="fa fa-angle-double-up"></i></a>
+  </div>
+  <!-- ./end Scroll to top -->
+</body>

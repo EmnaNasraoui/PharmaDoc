@@ -16,8 +16,10 @@ router.post('/addDoctor', async (req, res) => {
     res.send(result)
 }) ;
 
-router.post('/editDoctor/:id', async (req, res) => {
-    const result = await Doctor.findByIdAndUpdate(req.params.id, { $set: req.body }).catch(err => err)
+router.post('/editDoctor/:id_doctor', async (req, res) => {
+    let id_doctor = { _id: ObjectId(req.params.id_doctor) }
+    const result = await Doctor.findByIdAndUpdate(id_doctor, { $set: req.body }).catch(err => err)
+
     res.send(result)
 }) ;
 
@@ -33,7 +35,7 @@ router.post('/deleteaDoctor/:id_doctor', async (req, res) => {
 
 router.get('/getDoctor/:id_doctor', async (req, res) => {
     let id_doctor = { _id: ObjectId(req.params.id_doctor) }
-    const result = await Doctor.findOne(id_doctor).populate({ path:'id_user', select: ['first_name', 'last_name','adresse','user_image','_id','Schedule']}).exec().catch(err => err)
+    const result = await Doctor.findOne(id_doctor).populate([{ path:'id_user',model : 'User'},{ path:'All_Appointment',model : 'RDV', populate :{path : 'Patient_sik', model :'Patient', populate: { path:'id_user', model: 'User'}}}]).exec().catch(err => err)
     console.log(result);
     res.send(result)
 })
@@ -61,11 +63,14 @@ router.get('/getDoctors', async (req, res) => {
 //     res.send(result)
 // })
 
-router.get('/listeRDV', async (req, res) => {
+// router.get('/listeRDV/:id_doctor', async (req, res) => {
+//   let id_doctor = { _id: ObjectId(req.params.id_doctor) }
+//  const result = await Doctor.find(id_doctor,{All_Appointment}).exec().catch(err => err)
+//     res.send(result)
+//     console.log(result)
+//     console.log(id_doctor)
 
-    const result = await RDV.find().exec().catch(err => err)
-    res.send(result)
-}) ;
+// }) ;
 
 router.post('/editRDV/:id_RDV', async (req, res) => {
     const result = await RDV.findByIdAndUpdate(req.params.id_RDV, { $set: req.body }).catch(err => err)
