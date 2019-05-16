@@ -26,7 +26,14 @@
         </table>
       </div>
       <div class="col-md-8">
-        <h3 class="text-blue">{{result.id_pharmacy.Pharmacy_name}}</h3>
+          <div class="row">
+              <div class="col-md-4">
+                <h3 class="text-blue">{{result.id_pharmacy.Pharmacy_name}}</h3>
+              </div>
+              <div class="col-md-4">
+                <button type="button" (click)='AddPrantership()' style="margin-left: 362px" class="btn btn-info">Send partnership's request</button>
+              </div>
+            </div>
         <p>{{result.user_role}}</p>
         <p class="mt20">Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which
           looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or
